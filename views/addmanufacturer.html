@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ <title>{{title}}</title>
+ <meta charset="utf-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1">
+ <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+ <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+  <nav class="navbar">
+    <div class="container">
+      <div class="navbar-header">
+        <img src="logo.png" width="145px" alt="Autonovest Logo" style="margin-top:5px">
+      </div>
+      <div>
+        <ul class="nav navbar-nav navbar-right">
+          <li class="active"><a href="index.html">Home</a></li>
+          <li><a href="#">Get Started</a></li>
+          <li><a href="#">Market</a></li>
+          <li><a href="faq">FAQ</a></li>
+          <li><a href="contact">Contact</a></li>
+        </ul>
+      </div>
+
+    </div>
+
+  </nav>
+<div class="container">
+  <div class="page-header">
+    <h1>Add Manufacturer</h1>
+  </div>
+  <form action="/newmanu" method="post">
+    <div class="col-md-6">
+      <div class="input">
+        <label for="name">Company Registered Name</label>
+        <input type="text" class="form-control" name="comname" id="comname">
+      </div>
+      <div class="input">
+        <label for="name">Address</label>
+        <input type="text" class="form-control" name="address" id="address">
+      </div>
+      <div class="input">
+        <label for="name">Email</label>
+        <input type="email" class="form-control" name="email" id="email">
+      </div>
+      <div class="input">
+        <label for="name">Telephone</label>
+        <input type="text" class="form-control" name="tel" id="tel">
+      </div>
+
+    <div>
+
+    </div>
+    <div class="col-md-8">
+    <br/>
+    <button type="submit" name="send" class="btn btn-success">Add Manufacturer</button>
+  </div>
+  </form>
+</div>
+</body>
+</html>
