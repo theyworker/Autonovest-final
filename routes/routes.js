@@ -5,6 +5,8 @@ module.exports = function(express, app){
   app.use(bodyParser.json())
   // var carDetails = require('../src/other/cars')
   var carDetails = require('../src/other/carsnew')
+
+
   // console.log(carDetails);
   // const mysql = require('mysql');
   //
