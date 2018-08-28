@@ -12,7 +12,7 @@
   <nav class="navbar">
     <div class="container">
       <div class="navbar-header">
-        <img src="logo.png" width="145px" alt="Autonovest Logo" style="margin-top:5px">
+        <img src="../logo.png" width="145px" alt="Autonovest Logo" style="margin-top:5px">
       </div>
       <div>
         <ul class="nav navbar-nav navbar-right">
@@ -33,12 +33,12 @@
       <h1>{{cname}}</h1>
     </div>
     <div class="col-md-7">
-      <img src="{{cpic}}" width="700px">
+      <img src="{{cpic}}" width="90%">
     </div>
 
     <div class="col-md-5">
       <h2>Car Description</h2>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae. Sed dui lorem, adipiscing in adipiscing et, interdum nec metus. Mauris ultricies, justo eu convallis placerat, felis enim </p>
+      <p>{{desc}}</p>
     </div>
 
     <div class="col-md-5 ">
@@ -60,15 +60,19 @@
   <tbody>
     <tr>
       <td>Manufacturer</td>
-      <td>Tesla</td>
+      <td>{{manu}}</td>
     </tr>
     <tr>
       <td>Model</td>
-      <td>Model S</td>
+      <td>{{cname}}</td>
     </tr>
     <tr>
       <td>Year of Manufacture</td>
-      <td>2018</td>
+      <td>{{yom}}</td>
+    </tr>
+    <tr>
+      <td>Plate number</td>
+      <td>{{np}}</td>
     </tr>
   </tbody>
 </table>

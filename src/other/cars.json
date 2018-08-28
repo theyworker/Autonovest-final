@@ -5,7 +5,9 @@
     "picture": "tesla-model-3.jpg",
     "yearofmanu": 2018,
     "Manufacturer": "Tesla",
-    "EngineNumber": "52WVC10338"
+    "EngineNumber": "52WVC10338",
+    "description" : "The Tesla Model 3 is a mid-size (US) / compact executive (EU) luxury all-electric four-door sedan manufactured and sold by Tesla, Inc.",
+    "Numberplate" : "CAA-8798"
   },
   {
     "id": 1,
@@ -13,7 +15,9 @@
     "picture": "bmw.jpg",
     "yearofmanu":2018,
     "Manufacturer": "BMW",
-    "EngineNumber": "52WVC10338"
+    "EngineNumber": "52WVC10338",
+    "description" : "The sensory and digital intelligence, permanent service availability and connectivity of the BMW VISION NEXT 100 come together in the Companion, which allows the vehicle to get to know its driver better and provide intuitive and subtle assistance in every driving situation.",
+    "Numberplate" : "CAA-8798"
   },
   {
     "id": 2,
@@ -21,7 +25,9 @@
     "picture": "merc1.jpg",
     "yearofmanu": 2018,
     "Manufacturer": "Mercedes-Benz",
-    "EngineNumber": "52WVC10338"
+    "EngineNumber": "52WVC10338",
+    "description" : "The Mercedes-Benz F 015 Luxury in Motion research car and its immersive user experience is an innovative perspective into the future of mobility. ",
+    "Numberplate" : "CAA-8798"
   },
   {
     "id": 3,
@@ -29,7 +35,9 @@
     "picture": "lexus.jpg",
     "yearofmanu": 2018,
     "Manufacturer": "Lexus",
-    "EngineNumber": "52WVC10338"
+    "EngineNumber": "52WVC10338",
+    "description" : "Pairing a potent engine with two powerful electric motors and a self-charging lightweight lithium-ion battery, this is the highest performance LS Hybrid yet.* Delivering instant torque and the direct, instinctive feel of a 10-speed automatic transmission, it is efficiency at the peak of luxury.",
+    "Numberplate" : "CAA-8798"
   },
   {
     "id": 4,
@@ -37,7 +45,9 @@
     "picture": "tesla-model-s.png",
     "yearofmanu": 2018,
     "Manufacturer": "Tesla",
-    "EngineNumber": "52WVC10338"
+    "EngineNumber": "52WVC10338",
+    "description" : "The Tesla Model S is a full-sized / mid-size luxury all-electric five-door liftback car, produced by Tesla, Inc., and introduced on June 22, 2012",
+    "Numberplate" : "CAA-8798"
   },
   {
     "id": 5,
@@ -45,6 +55,8 @@
     "picture": "bmw.jpg",
     "yearofmanu":2018,
     "Manufacturer": "BMW",
-    "EngineNumber": "52WVC10338"
+    "EngineNumber": "52WVC10338",
+    "description" : "The BMW iNext model is going to be an important addition to the company's roster.",
+    "Numberplate" : "CAA-8798"
   }
 ]

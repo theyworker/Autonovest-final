@@ -3,7 +3,8 @@ module.exports = function(express, app){
   var bodyParser = require('body-parser')
   app.use(bodyParser.urlencoded({ extended: false }))
   app.use(bodyParser.json())
-  var carDetails = require('../src/other/cars')
+  // var carDetails = require('../src/other/cars')
+  var carDetails = require('../src/other/carsnew')
   // console.log(carDetails);
   // const mysql = require('mysql');
   //
@@ -40,23 +41,30 @@ module.exports = function(express, app){
 
 
   router.get('/car/:carID', function(req,res,next){
+
     var c = parseInt(req.params.carID);
       if (!isNaN(c)){ //handling useless requests
 
 
     var Car_Name = carDetails[c].name;
-    var Car_pic = carDetails[c].picture;
+    var Car_pic = "../"+carDetails[c].picture;
     var Car_yom = carDetails[c].yearofmanu;
     var Car_manu = carDetails[c].Manufacturer;
     var Car_EN = carDetails[c].EngineNumber;
+    var Car_des = carDetails[c].description;
+    var Car_np = carDetails[c].Numberplate;
 
-    console.log(Car_Name,Car_pic,Car_yom,Car_manu,Car_EN);
-  }
+    // console.log(Car_Name,Car_pic,Car_yom,Car_manu,Car_EN);
     res.render('carprofile',{title:'Car Profile | Autonovest',
      cname:Car_Name,
      cpic:Car_pic,
-
+     manu:Car_manu,
+     yom:Car_yom,
+     desc: Car_des,
+     np:Car_np
    });
+  }
+
   })
 
   router.get('/addcar', function(req,res,next){
@@ -162,16 +170,27 @@ router.post('/login-attempt', function(req,res,next){
 
     //insert into database
 
-    var sql = "INSERT INTO cars(engNum, Numberplate, ManufacturerID, Model, Manufacturedyear, value, description, carid) VALUES ('"+engnum+"', '"+cregnumplt+"', 1 , '"+cmodel+"', '"+cyr+"', '"+cval+"','"+description+"', NULL);";
-  con.query(sql, function (err, result) {
-  if (err) throw err
-  console.log('Inserted 1 record')
+carDetails.push({"id":cid,
+"name":cmodel,
+"picture":"lexus.jpg",
+"yearofmanu":cyr,
+"Manufacturer":cmanuf,
+"EngineNumber":engnum,
+"description":description,
+"Numberplate":cregnumplt});
 
+var fs = require('fs');
+
+var jsonData = JSON.stringify(carDetails);
+fs.writeFile("./src/other/carsnew.json", jsonData, function(err) {
+    if (err) {
+        console.log(err);
+    }
+});
 
     res.render('sucesspage',{title:'Autonovest - Crowdfunding for Autonomous Cars',
     objtype : 'Car',
     objname: cid});
-  })
 
 })
   app.use('/', router);
