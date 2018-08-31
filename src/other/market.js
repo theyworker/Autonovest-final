@@ -4,7 +4,6 @@ App = {
     $.getJSON('other/carsnew.json', function(data) {
       var petsRow = $('#carsRow');
       var petTemplate = $('#carTemplate');
-      console.log(data.length);
       for (i = 0; i < data.length; i ++) {
         petTemplate.find('.panel-title').text(data[i].name);
         petTemplate.find('img').attr('src', data[i].picture);

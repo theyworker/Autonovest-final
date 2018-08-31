@@ -17,7 +17,7 @@ app.set('view engine', 'html');
 app.use(express.static(path.join(__dirname, 'src')));
 
 
-require('./routes/routes.js')(express, app);
+require('./routes/routes.js')(express, app, Web3);
 
 app.listen(port, () => {
 

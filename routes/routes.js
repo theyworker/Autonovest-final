@@ -5,6 +5,7 @@ module.exports = function(express, app){
   app.use(bodyParser.json())
   // var carDetails = require('../src/other/cars')
   var carDetails = require('../src/other/carsnew')
+  const truffle_connect = require('../connection/app.js');
 
 
   // console.log(carDetails);
@@ -38,6 +39,9 @@ module.exports = function(express, app){
   })
 
   router.get('/market', function(req,res,next){
+
+    var carsno = truffle_connect.getnumofcars();
+    console.log(carsno+'cars are there');
     res.render('market',{title:'Market | Autonovest'});
   })
 
@@ -189,6 +193,8 @@ fs.writeFile("./src/other/carsnew.json", jsonData, function(err) {
         console.log(err);
     }
 });
+
+
 
     res.render('sucesspage',{title:'Autonovest - Crowdfunding for Autonomous Cars',
     objtype : 'Car',
