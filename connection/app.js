@@ -73,7 +73,7 @@ module.exports = {
       //   console.log(rsl);
       // });
     }).catch(function(e) {
-      console.log("eror");
+      console.log(e);
     });
   }
 }
