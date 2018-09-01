@@ -55,10 +55,11 @@ module.exports = {
     //     callback("Error 404");
     // });
   },
-  getnumofcars: function() {
+  getnumofcars: function() { // this is where im stuck 1
     var self = this;
     //
     // Bootstrap the MetaCoin abstraction for Use.
+    // console.log(Carfunding);
     Carfunding.setProvider(self.web3.currentProvider);
     //
     var meta;
@@ -67,7 +68,7 @@ module.exports = {
     Carfunding.deployed().then(function(instance) {
       meta = instance;
 
-      // return meta.getNumofCars.then(function(result){
+      // return meta.getNumofCars.call().then(function(result){
       //   console.log(result);
       //   var rsl = result.toString();
       //   console.log(rsl);

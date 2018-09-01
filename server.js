@@ -17,13 +17,13 @@ app.set('view engine', 'html');
 app.use(express.static(path.join(__dirname, 'src')));
 
 
-require('./routes/routes.js')(express, app, Web3);
+require('./routes/routes.js')(express, app);
+
 
 app.listen(port, () => {
 
   // fallback - use your fallback strategy (local node / hosted node + in-dapp id mgmt / fail)
-  truffle_connect.web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:8545"));
-
+  truffle_connect.web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:7545"));
   console.log("Express Listening at http://localhost:" + port);
 
 });
