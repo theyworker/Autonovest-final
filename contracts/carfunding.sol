@@ -10,11 +10,11 @@ uint public carindex=0;
 event Purchase(address carContract, uint val); //change this
 event CarAdded(uint carID, uint price, address contractAddress);
 // buying a car
-function buy(uint carID, address buyer, uint amount) public returns(uint) {
+
+function buy(uint carID, uint amount) public returns(uint) {
   require(carID >= 0 && carID <= 49);
   require(carID<carindex);
-
-  /* carfundings[carID] = msg.sender; */
+address buyer = this;
 
   address temp = carfundings[carID];
   car cartobuy = car(temp);
@@ -27,6 +27,23 @@ function buy(uint carID, address buyer, uint amount) public returns(uint) {
 
   //sort out the buying function
 }
+
+/* function buy(uint carID, address buyer, uint amount) public returns(uint) {
+  require(carID >= 0 && carID <= 49);
+  require(carID<carindex);
+
+
+
+  address temp = carfundings[carID];
+  car cartobuy = car(temp);
+
+
+
+  uint result = cartobuy.buy(buyer, amount);
+  emit Purchase(temp,result);
+  return result;
+
+} */
 
 // Retrieving the carfundings array
 function getcarfundings() public view returns (address[50]) {

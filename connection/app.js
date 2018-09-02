@@ -9,6 +9,9 @@ const carfunding_artifact = require('../build/contracts/carfunding.json');
 var Carfunding = contract(carfunding_artifact);
 // var MetaCoin = contract(metacoin_artifact);
 
+
+var temprResultValue;
+
 module.exports = {
   start: function(callback) {
     var self = this;
@@ -42,11 +45,13 @@ module.exports = {
     var Carfunding_inst;
     Carfunding.deployed().then(function(instance) {
       Carfunding_inst = instance;
-      return Carfunding_inst.buy(0,50,{from: sender});
+      return Carfunding_inst.buy(0,50);
     }).catch(function(e) {
       console.log(e);
       callback("ERROR 404");
     });
+
+
     //   return meta.getBalance.call(account, {from: account});
     // }).then(function(value) {
     //     callback(value.valueOf());
@@ -68,13 +73,47 @@ module.exports = {
     Carfunding.deployed().then(function(instance) {
       meta = instance;
 
-      // return meta.getNumofCars.call().then(function(result){
-      //   console.log(result);
-      //   var rsl = result.toString();
-      //   console.log(rsl);
-      // });
+      return meta.getNumofCars.call().then(function(result){
+        rsl = result.toNumber();
+        temprResultValue = rsl;
+      });
     }).catch(function(e) {
       console.log(e);
     });
-  }
+  },
+
+
+
+
+
+  addnewcar : function(sender, callback){
+    var self = this;
+
+    // // Bootstrap the  abstraction for Use.
+    Carfunding.setProvider(self.web3.currentProvider);
+    //
+    var Carfunding_inst;
+
+    Carfunding.deployed().then(function(instance) {
+      Carfunding_inst = instance;
+      return Carfunding_inst.newcar(0,500);
+    }).catch(function(e) {
+      console.log(e);
+      callback("ERROR 404");
+    });
+  },
+
+getResult : function(){
+var ResultVal;
+setTimeout(function () {
+  console.log('Waited a long time '+temprResultValue);
+   ResultVal = temprResultValue;
+}, 100);
+
+console.log(ResultVal);
+return ResultVal;
+
+}
+
+
 }

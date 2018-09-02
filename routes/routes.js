@@ -8,6 +8,7 @@ module.exports = function(express, app){
   const truffle_connect = require('../connection/app.js');
 
 
+
   // console.log(carDetails);
   // const mysql = require('mysql');
   //
@@ -40,8 +41,23 @@ module.exports = function(express, app){
 
   router.get('/market', function(req,res,next){
 
+truffle_connect.start(function(answer) {
+});
     var carsno = truffle_connect.getnumofcars();
-    console.log(carsno+'cars are there');
+    var car1 = truffle_connect.getResult();
+
+    console.log(car1+'cars are there');
+
+    // var addy = truffle_connect.addnewcar('0x400074e5ce19781166Ea7c83FdA068a5C810783e',function(answer){
+    //   console.log(answer);
+    // });
+    // console.log(addy);
+    //
+    // var carsno = truffle_connect.getnumofcars();
+    // console.log(carsno+'cars are there');
+    //
+    //     var val = truffle_connect.buycar();
+    //     console.log(val);
     res.render('market',{title:'Market | Autonovest'});
   })
 
@@ -175,6 +191,8 @@ router.post('/login-attempt', function(req,res,next){
     var cval = req.body.val;
 
     //insert into database
+
+
 
 carDetails.push({"id":cid,
 "name":cmodel,
