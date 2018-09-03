@@ -25,7 +25,7 @@ contract testcarfunding{
   }
 
   function testusercanbuycar() public {
-    uint returnedID = CarFunding.buy(0,this,2);
+    uint returnedID = CarFunding.buy(0,2);
 
   // should send ether to contract
     uint expected = 2;

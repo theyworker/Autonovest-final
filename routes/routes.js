@@ -20,6 +20,12 @@ module.exports = function(express, app){
   // })
 
   router.get('/', function(req,res,next){
+    truffle_connect.start(function(answer) {
+    console.log(answer);
+    });
+    var addy = truffle_connect.addnewcar(function(answer){
+      console.log(answer);
+    })
     res.render('index',{title:'Autonovest - Crowdfunding for Autonomous Cars'});
   })
 
@@ -40,13 +46,22 @@ module.exports = function(express, app){
   })
 
   router.get('/market', function(req,res,next){
-
+var numofcars;
 truffle_connect.start(function(answer) {
+  console.log(answer);
 });
     var carsno = truffle_connect.getnumofcars();
-    var car1 = truffle_connect.getResult();
 
-    console.log(car1+'cars are there');
+//timing out for 100ms t
+    setTimeout(function () {
+        var car1 = truffle_connect.getResult();
+        console.log(car1+' cars are there');
+        numofcars = car1;
+        console.log(numofcars+'inside');
+    }, 100);
+
+console.log(numofcars+'outside');
+    // console.log(car1+'cars are there');
 
     // var addy = truffle_connect.addnewcar('0x400074e5ce19781166Ea7c83FdA068a5C810783e',function(answer){
     //   console.log(answer);

@@ -21,19 +21,23 @@ module.exports = {
 
     // Get the initial account balance so it can be displayed.
     self.web3.eth.getAccounts(function(err, accs) {
+
       if (err != null) {
-        alert("There was an error fetching your accounts.");
+        console.log('this is running');
+        console.log("There was an error fetching your accounts.");
         return;
       }
 
       if (accs.length == 0) {
-        alert("Couldn't get any accounts! Make sure your Ethereum client is configured correctly.");
+        console.log("Couldn't get any accounts! Make sure your Ethereum client is configured correctly.");
         return;
       }
       self.accounts = accs;
       self.account = self.accounts[2];
+      callback(self.account);
+      self.web3.eth.defaultAccount = self.web3.eth.accounts[0]
 
-      callback(self.accounts);
+
     });
   },
   buycar: function() {
@@ -41,6 +45,7 @@ module.exports = {
 
     // // Bootstrap the MetaCoin abstraction for Use.
     Carfunding.setProvider(self.web3.currentProvider);
+
     //
     var Carfunding_inst;
     Carfunding.deployed().then(function(instance) {
@@ -76,6 +81,7 @@ module.exports = {
       return meta.getNumofCars.call().then(function(result){
         rsl = result.toNumber();
         temprResultValue = rsl;
+
       });
     }).catch(function(e) {
       console.log(e);
@@ -86,17 +92,17 @@ module.exports = {
 
 
 
-  addnewcar : function(sender, callback){
+  addnewcar : function(callback){
     var self = this;
 
     // // Bootstrap the  abstraction for Use.
     Carfunding.setProvider(self.web3.currentProvider);
-    //
     var Carfunding_inst;
+    var sender1 = self.account;
 
     Carfunding.deployed().then(function(instance) {
       Carfunding_inst = instance;
-      return Carfunding_inst.newcar(0,500);
+      return Carfunding_inst.newcar(0);
     }).catch(function(e) {
       console.log(e);
       callback("ERROR 404");
@@ -104,14 +110,8 @@ module.exports = {
   },
 
 getResult : function(){
-var ResultVal;
-setTimeout(function () {
-  console.log('Waited a long time '+temprResultValue);
-   ResultVal = temprResultValue;
-}, 100);
 
-console.log(ResultVal);
-return ResultVal;
+return temprResultValue;
 
 }
 
