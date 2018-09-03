@@ -35,9 +35,10 @@ module.exports = {
       self.accounts = accs;
       self.account = self.accounts[2];
       callback(self.account);
-      self.web3.eth.defaultAccount = self.web3.eth.accounts[0]
 
-
+      Carfunding.web3.eth.defaultAccount = self.web3.eth.coinbase;
+    console.log("This is the coinbase ::::::: " + self.web3.eth.coinbase);
+self.web3.eth.defaultAccount = self.web3.eth.accounts[0];
     });
   },
   buycar: function() {
@@ -98,11 +99,16 @@ module.exports = {
     // // Bootstrap the  abstraction for Use.
     Carfunding.setProvider(self.web3.currentProvider);
     var Carfunding_inst;
-    var sender1 = self.account;
 
     Carfunding.deployed().then(function(instance) {
       Carfunding_inst = instance;
-      return Carfunding_inst.newcar(0);
+      return Carfunding_inst.newcar(0,500).then(function(result){
+        console.log(result);
+        var rsl1 = result.toString();
+
+        console.log(rsl1);
+
+      });
     }).catch(function(e) {
       console.log(e);
       callback("ERROR 404");

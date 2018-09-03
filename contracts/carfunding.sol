@@ -1,6 +1,7 @@
 pragma solidity ^0.4.17;
 
-import "./car.sol";
+/* import "./car.sol"; */
+import "contracts/car.sol";
 
 contract carfunding {
 
@@ -55,22 +56,28 @@ function checkforsale(uint carID) public view returns(bool){
   return cartocheck.getForSale();
 }
 
-/* function newcar(uint carID, uint carprice) public returns(address)
+/* function newcar(uint carID, uint carprice) public returns(uint)
+{
+    require(carID >= 0 && carID <= 49);
+
+
+    carindex= carindex+30;
+
+
+    return carindex;
+} */
+function newcar(uint carID, uint carprice) public returns(address)
 {
     require(carID >= 0 && carID <= 49);
 
     address newCarContract = new car(carID, carprice);
     carfundings[carID] = newCarContract;
     carindex++;
-    // car addedcar = car(newCarContract); 
+    // car addedcar = car(newCarContract);
     emit CarAdded(carID,carprice,newCarContract);
     return newCarContract;
-} */
-function newcar(uint carID) public returns(uint)
-{
-
-    return carID;
 }
+
 function getNumofCars() public view returns (uint){
   return carindex;
 }
