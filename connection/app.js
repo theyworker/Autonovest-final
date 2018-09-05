@@ -97,14 +97,15 @@ self.web3.eth.defaultAccount = self.web3.eth.accounts[0];
 
   addnewcar : function(num,callback){
     var self = this;
-console.log(num*1000000000000000000);
+    var numinwei = num*1000000000000000000;
+console.log(numinwei);
     // // Bootstrap the  abstraction for Use.
     Carfunding.setProvider(self.web3.currentProvider);
     var Carfunding_inst;
 
     Carfunding.deployed().then(function(instance) {
       Carfunding_inst = instance;
-      return Carfunding_inst.newcar(500,{gas:3000000}).then(function(result){
+      return Carfunding_inst.newcar(numinwei,{gas:3000000}).then(function(result){
 console.log(result);
       });
     }).catch(function(e) {

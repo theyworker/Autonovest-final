@@ -20,12 +20,7 @@ module.exports = function(express, app){
   // })
 
   router.get('/', function(req,res,next){
-    truffle_connect.start(function(answer) {
-    console.log(answer);
-    });
-    var addy = truffle_connect.addnewcar(5,function(answer){
-      console.log(answer);
-    })
+
     res.render('index',{title:'Autonovest - Crowdfunding for Autonomous Cars'});
   })
 
@@ -206,6 +201,13 @@ router.post('/login-attempt', function(req,res,next){
     var cval = req.body.val;
 
     //insert into database
+
+    truffle_connect.start(function(answer) {
+    console.log(answer);
+    });
+    var addy = truffle_connect.addnewcar(cval.valueOf(),cregnumplt,engnum,function(answer){
+      console.log(answer);
+    })
 
 
 
