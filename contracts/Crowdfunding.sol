@@ -15,15 +15,17 @@ contract Crowdfunding{
     uint numofowners;
     uint amountRaised;
     bool ForSale;
+    string numplate;
+    string EngNum;
     mapping (uint => Owner) Owners;
   }
 
   mapping (uint => Car) Cars;
 
-function newcar(uint priceofCar) public returns(uint){
+function newcar(uint priceofCar,string nump,string engn) public returns(uint){
   uint CARid = numofcars++;
   //initializing numofowners, amountRaised to 0 and ForSale to true
-  Cars[CARid] = Car(CARid,priceofCar,0,0,true);
+  Cars[CARid] = Car(CARid,priceofCar,0,0,true,nump,engn);
 
   return Cars[CARid].price;
 }
