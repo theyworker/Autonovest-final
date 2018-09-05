@@ -4,10 +4,15 @@ const contract = require('truffle-contract');
 // const metacoin_artifact = require('../build/contracts/MetaCoin.json');
 // var MetaCoin = contract(metacoin_artifact);
 
+//
+// const carfunding_artifact = require('../build/contracts/carfunding.json');
+// var Carfunding = contract(carfunding_artifact);
 
-const carfunding_artifact = require('../build/contracts/carfunding.json');
-var Carfunding = contract(carfunding_artifact);
-// var MetaCoin = contract(metacoin_artifact);
+
+const crowdfunding_artifacts = require('../build/contracts/Crowdfunding.json');
+var Carfunding = contract(crowdfunding_artifacts);
+
+
 
 
 var temprResultValue;
@@ -51,7 +56,7 @@ self.web3.eth.defaultAccount = self.web3.eth.accounts[0];
     var Carfunding_inst;
     Carfunding.deployed().then(function(instance) {
       Carfunding_inst = instance;
-      return Carfunding_inst.buy(0,50);
+      return Carfunding_inst.buycar(0);
     }).catch(function(e) {
       console.log(e);
       callback("ERROR 404");
@@ -90,24 +95,17 @@ self.web3.eth.defaultAccount = self.web3.eth.accounts[0];
   },
 
 
-
-
-
-  addnewcar : function(callback){
+  addnewcar : function(num,callback){
     var self = this;
-
+console.log(num*1000000000000000000);
     // // Bootstrap the  abstraction for Use.
     Carfunding.setProvider(self.web3.currentProvider);
     var Carfunding_inst;
 
     Carfunding.deployed().then(function(instance) {
       Carfunding_inst = instance;
-      return Carfunding_inst.newcar(0,500).then(function(result){
-        console.log(result);
-        var rsl1 = result.toString();
-
-        console.log(rsl1);
-
+      return Carfunding_inst.newcar(500,{gas:3000000}).then(function(result){
+console.log(result);
       });
     }).catch(function(e) {
       console.log(e);

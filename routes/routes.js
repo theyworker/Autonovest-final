@@ -23,7 +23,7 @@ module.exports = function(express, app){
     truffle_connect.start(function(answer) {
     console.log(answer);
     });
-    var addy = truffle_connect.addnewcar(function(answer){
+    var addy = truffle_connect.addnewcar(5,function(answer){
       console.log(answer);
     })
     res.render('index',{title:'Autonovest - Crowdfunding for Autonomous Cars'});
