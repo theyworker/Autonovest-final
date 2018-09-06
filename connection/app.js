@@ -48,7 +48,7 @@ module.exports = {
 self.web3.eth.defaultAccount = self.web3.eth.accounts[0];
     });
   },
-  buycar: function() {
+  buycar: function(cid,am) {
     var self = this;
 
     // // Bootstrap the MetaCoin abstraction for Use.
@@ -58,7 +58,7 @@ self.web3.eth.defaultAccount = self.web3.eth.accounts[0];
     var Carfunding_inst;
     Carfunding.deployed().then(function(instance) {
       Carfunding_inst = instance;
-      return Carfunding_inst.buycar(0);
+      return Carfunding_inst.buycar(cid);
     }).catch(function(e) {
       console.log(e);
       callback("ERROR 404");

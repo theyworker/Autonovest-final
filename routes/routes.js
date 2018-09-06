@@ -10,6 +10,7 @@ module.exports = function(express, app){
 
   router.get('/', function(req,res,next){
 
+
     res.render('index',{title:'Autonovest - Crowdfunding for Autonomous Cars'});
   })
 
@@ -105,27 +106,32 @@ console.log(typeof(ARdata));
      price: priceinfo,
      amountr: ARinfo,
      availSTK: availStake,
-     percenSol: percentageSold
+     percenSol: percentageSold,
+     refno: c
    });
   }
 
   })
 
+  router.post('/buythecar', function(req,res,next){
+var carid = req.body.carid1;
+var amount = req.body.buyamount;
+
+console.log('Server here');
+console.log(carid);
+console.log(amount);
+
+
+truffle_connect.start(function(answer) {
+  console.log(answer);
+});
+
+var f= truffle_connect.buycar(carid,amount);
+
+res.end();
+  })
+
   router.get('/addcar', function(req,res,next){
-
-    // var dbmanus = {};
-    // var dbmanus = "";
-    //
-    //   con.query('SELECT distinct CompanyRegName FROM Autonovest.Manufacturer;', (err, rows) => {
-    //     if (err) throw err
-    //
-    //     for (var i = 0; i < rows.length; i++) {
-    //       // dbmanus[i + 1] = rows[i].CompanyRegName;
-    //       var temp = rows[i].CompanyRegName;
-    //       dbmanus = dbmanus + temp+'|';
-    //     };
-    //   })
-
 
     res.render('addcar',{title:'Add Car | Autonovest'});
   })
@@ -203,7 +209,7 @@ router.post('/login-attempt', function(req,res,next){
 })
 
   router.post('/newcar', function(req,res,next){
-    var cid = req.body.carid;
+    var cid = carDetails.length;
     var cmanuf = req.body.manuf;
     var cmodel = req.body.model;
     var cyr = req.body.yr;
@@ -212,19 +218,14 @@ router.post('/login-attempt', function(req,res,next){
     var description = req.body.descrip;
     var cval = req.body.val;
 
-    //insert into database
 
     truffle_connect.start(function(answer) {
     console.log(answer);
     });
 
-
-    console.log('Price'+cval.valueOf());
-    console.log('Number plate'+cregnumplt+'Number plate'+engnum);
     var addy = truffle_connect.addnewcar(cval.valueOf(),cregnumplt,engnum,function(answer){
       console.log(answer);
     })
-
 
 
 carDetails.push({"id":cid,

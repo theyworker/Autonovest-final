@@ -48,18 +48,21 @@
       <h4>Available Stake: {{availSTK}} Ether </h4>
 
       <div class="progress" style="height: 20px;">
-        <div class="progress-bar" role="progressbar" style="width: {{percenSol}};" aria-valuenow="{{amountr}}" aria-valuemin="0" aria-valuemax="{{price}}">Sold</div>
+        <div class="progress-bar" role="progressbar" style="width: {{percenSol}} ;" aria-valuenow="{{amountr}}" aria-valuemin="0" aria-valuemax="{{price}}">Sold</div>
       </div>
-
-      <input type="text" id="buyamount" placeholder="Amount in Autonovest Tokens" style="width:45%">
+        <form action="/buythecar" method="post">
+      <input type="number" id="buyamount" name="buyamount" placeholder="Amount in Autonovest Tokens" style="width:45%">
+      <input type="hidden" value="{{refno}}" name="carid1">
     </br>
-    <button type="button" class="btn btn-primary btn-purchase" style="width:45%;height:45px;margin-top:5px;"><strong>Buy</strong></button>
+    <button type="submit" class="btn btn-primary" style="width:45%;height:45px;margin-top:5px;"><strong>Buy</strong></button>
+        </form>
     </div>
     <div class="col-md-12">
       <h2>Car Specification</h2>
       <table class="table table-striped">
 
   <tbody>
+
     <tr>
       <td>Manufacturer</td>
       <td>{{manu}}</td>
@@ -76,11 +79,14 @@
       <td>Plate number</td>
       <td>{{np}}</td>
     </tr>
+    <tr>
+      <td>Autonovest Reference Number</td>
+      <td id="carnum">{{refno}}</td>
+    </tr>
   </tbody>
 </table>
     </div>
   </div>
-
 
 </body>
 </html>
