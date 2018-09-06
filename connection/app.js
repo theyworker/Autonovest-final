@@ -17,6 +17,9 @@ var Carfunding = contract(crowdfunding_artifacts);
 
 var temprResultValue;
 
+var carprice;
+var caramountraised;
+
 module.exports = {
   start: function(callback) {
     var self = this;
@@ -28,7 +31,6 @@ module.exports = {
     self.web3.eth.getAccounts(function(err, accs) {
 
       if (err != null) {
-        console.log('this is running');
         console.log("There was an error fetching your accounts.");
         return;
       }
@@ -95,7 +97,7 @@ self.web3.eth.defaultAccount = self.web3.eth.accounts[0];
   },
 
 
-  addnewcar : function(num,callback){
+  addnewcar : function(num,Numberplate, engnum ,callback){
     var self = this;
     var numinwei = num*1000000000000000000;
 console.log(numinwei);
@@ -105,7 +107,7 @@ console.log(numinwei);
 
     Carfunding.deployed().then(function(instance) {
       Carfunding_inst = instance;
-      return Carfunding_inst.newcar(numinwei,{gas:3000000}).then(function(result){
+      return Carfunding_inst.newcar(numinwei, Numberplate , engnum, {gas:3000000}).then(function(result){
 console.log(result);
       });
     }).catch(function(e) {
@@ -118,6 +120,37 @@ getResult : function(){
 
 return temprResultValue;
 
+},
+
+getCarPricinginfo : function(carid){
+  var self = this;
+  Carfunding.setProvider(self.web3.currentProvider);
+
+      var Carfunding_inst;
+
+      Carfunding.deployed().then(function(instance){
+        Carfunding_inst = instance;
+
+        return Carfunding_inst.getPrice.call(carid).then(function(result){
+
+          carprice = result.toNumber()/1000000000000000000
+
+          return Carfunding_inst.getAmountRaised.call(carid).then(function(ar){
+            caramountraised = ar.toNumber();
+            console.log(caramountraised);
+          })
+        });
+      })
+},
+
+returnPriceinfo : function (){
+  console.log('Car price here '+ carprice);
+  return carprice;
+},
+
+returnARinfo : function (){
+  console.log('Car amountRaised here '+ caramountraised);
+  return caramountraised;
 }
 
 

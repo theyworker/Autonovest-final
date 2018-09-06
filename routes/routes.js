@@ -8,17 +8,6 @@ module.exports = function(express, app){
   const truffle_connect = require('../connection/app.js');
 
 
-
-  // console.log(carDetails);
-  // const mysql = require('mysql');
-  //
-  // const con = mysql.createConnection({
-  //   host: 'localhost',
-  //   user: 'avar',
-  //   password: 'avar22',
-  //   database: 'Autonovest'
-  // })
-
   router.get('/', function(req,res,next){
 
     res.render('index',{title:'Autonovest - Crowdfunding for Autonomous Cars'});
@@ -52,7 +41,6 @@ truffle_connect.start(function(answer) {
         var car1 = truffle_connect.getResult();
         console.log(car1+' cars are there');
         numofcars = car1;
-        console.log(numofcars+'inside');
     }, 100);
 
 console.log(numofcars+'outside');
@@ -74,8 +62,28 @@ console.log(numofcars+'outside');
 
   router.get('/car/:carID', function(req,res,next){
 
+
+
     var c = parseInt(req.params.carID);
       if (!isNaN(c)){ //handling useless requests
+
+
+        truffle_connect.start(function(answer) {
+          console.log(answer);
+        });
+
+            var carsno = truffle_connect.getCarPricinginfo(c);
+
+            var priceinfo = truffle_connect.returnPriceinfo();
+            console.log('Prices are'+priceinfo);
+
+var ARdata = truffle_connect.returnARinfo();
+console.log(typeof(ARdata));
+            var ARinfo = ARdata;
+            console.log('Prices are'+ARinfo);
+
+            var availStake = priceinfo - ARinfo;
+            var percentageSold = (priceinfo/ARinfo).toFixed(2)+"%";
 
 
     var Car_Name = carDetails[c].name;
@@ -93,7 +101,11 @@ console.log(numofcars+'outside');
      manu:Car_manu,
      yom:Car_yom,
      desc: Car_des,
-     np:Car_np
+     np:Car_np,
+     price: priceinfo,
+     amountr: ARinfo,
+     availSTK: availStake,
+     percenSol: percentageSold
    });
   }
 
@@ -205,6 +217,10 @@ router.post('/login-attempt', function(req,res,next){
     truffle_connect.start(function(answer) {
     console.log(answer);
     });
+
+
+    console.log('Price'+cval.valueOf());
+    console.log('Number plate'+cregnumplt+'Number plate'+engnum);
     var addy = truffle_connect.addnewcar(cval.valueOf(),cregnumplt,engnum,function(answer){
       console.log(answer);
     })

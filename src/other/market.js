@@ -38,6 +38,6 @@ App = {
 $(function() {
   $(window).load(function() {
     App.init();
-
+console.log('Market js is running');
   });
 });

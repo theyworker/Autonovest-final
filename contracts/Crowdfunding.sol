@@ -54,6 +54,12 @@ function getForSale(uint cid) public view returns(bool) {
   return Cars[cid].ForSale;
 }
 
+function carincome(uint cid) public payable{
+Car storage tempCar = Cars[cid];
+require(!tempCar.ForSale);
+// handle income and distribution
+}
+
 
 
 
