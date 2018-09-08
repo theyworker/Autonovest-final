@@ -3,6 +3,7 @@ pragma solidity ^0.4.17;
 contract Crowdfunding{
 
   uint numofcars;
+  uint TotalVolume;
   // Defines the owners
   struct Owner{
     address owner_addr;
@@ -22,6 +23,11 @@ contract Crowdfunding{
 
   mapping (uint => Car) Cars;
 
+  constructor() public {
+    numofcars = 0;
+    TotalVolume = 0;
+  }
+
 function newcar(uint priceofCar,string nump,string engn) public returns(uint){
   uint CARid = numofcars++;
   //initializing numofowners, amountRaised to 0 and ForSale to true
@@ -35,7 +41,8 @@ function buycar(uint cid) public payable{
   Car storage tempCar = Cars[cid];
 tempCar.Owners[tempCar.numofowners++]= Owner(msg.sender,msg.value);
   tempCar.amountRaised += msg.value;
-
+  increaseVolume(msg.value);
+  closeSale(cid);
 }
 
 function getNumofCars()public view returns(uint){
@@ -62,6 +69,17 @@ require(!tempCar.ForSale);
 
 function getBalance() public view returns(uint){
   return address(this).balance;
+}
+
+function increaseVolume(uint TrxAmount)public{
+  TotalVolume += TrxAmount;
+}
+
+function closeSale(uint cid) public{
+  if(Cars[cid].price==Cars[cid].amountRaised)
+  {
+    Cars[cid].ForSale = false;
+  }
 }
 
 
