@@ -16,7 +16,7 @@ var carfunding = artifacts.require("Crowdfunding");
                 console.log('Amount Raised:'+amtrs);
 
                 return inst.getBalance.call().then(function(blnc){
-                  console.log(blnc.toNumber());
+                  console.log('balance:'+blnc.toNumber());
 
                   return inst.getForSale.call(0).then(function(fs){
                     console.log(fs);

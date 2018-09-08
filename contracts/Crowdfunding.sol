@@ -38,7 +38,7 @@ function newcar(uint priceofCar,string nump,string engn) public returns(uint){
 
 function buycar(uint cid) public payable{
   require(msg.value<=getPrice(cid)-getAmountRaised(cid));
-  Car storage tempCar = Cars[cid];
+  Car storage tempCar = Cars[cid];  
 tempCar.Owners[tempCar.numofowners++]= Owner(msg.sender,msg.value);
   tempCar.amountRaised += msg.value;
   increaseVolume(msg.value);
@@ -65,6 +65,8 @@ function carincome(uint cid) public payable{
 Car storage tempCar = Cars[cid];
 require(!tempCar.ForSale);
 // handle income and distribution
+
+
 }
 
 function getBalance() public view returns(uint){
