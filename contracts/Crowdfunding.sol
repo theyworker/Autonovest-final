@@ -60,6 +60,10 @@ require(!tempCar.ForSale);
 // handle income and distribution
 }
 
+function getBalance() public view returns(uint){
+  return address(this).balance;
+}
+
 
 
 

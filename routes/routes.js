@@ -84,8 +84,9 @@ console.log(typeof(ARdata));
             console.log('Prices are'+ARinfo);
 
             var availStake = priceinfo - ARinfo;
-            var percentageSold = (priceinfo/ARinfo).toFixed(2)+"%";
+            var percentageSold = "width:"+(ARinfo/priceinfo).toFixed(2)*100+"%";
 
+console.log(percentageSold);
 
     var Car_Name = carDetails[c].name;
     var Car_pic = "../"+carDetails[c].picture;

@@ -58,7 +58,7 @@ self.web3.eth.defaultAccount = self.web3.eth.accounts[0];
     var Carfunding_inst;
     Carfunding.deployed().then(function(instance) {
       Carfunding_inst = instance;
-      return Carfunding_inst.buycar(cid);
+      return Carfunding_inst.buycar(cid,{value:am*1000000000000000000});
     }).catch(function(e) {
       console.log(e);
       callback("ERROR 404");
