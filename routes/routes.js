@@ -7,6 +7,9 @@ module.exports = function(express, app){
   var carDetails = require('../src/other/carsnew')
   const truffle_connect = require('../connection/app.js');
 
+  const multer = require("multer");
+
+
 
   router.get('/', function(req,res,next){
 
@@ -128,8 +131,10 @@ truffle_connect.start(function(answer) {
 });
 
 var f= truffle_connect.buycar(carid,amount);
+var model = carDetails[carid].name;
+var am = amount+' Ether '
 
-res.end();
+res.render('purchase_sucesspage',{mdl: model, val : am });
   })
 
   router.get('/addcar', function(req,res,next){
@@ -209,6 +214,8 @@ router.post('/login-attempt', function(req,res,next){
   console.log(usernm,passwd);
 })
 
+
+
   router.post('/newcar', function(req,res,next){
     var cid = carDetails.length;
     var cmanuf = req.body.manuf;
@@ -218,6 +225,8 @@ router.post('/login-attempt', function(req,res,next){
     var engnum = req.body.engnum;
     var description = req.body.descrip;
     var cval = req.body.val;
+
+
 
 
     truffle_connect.start(function(answer) {
