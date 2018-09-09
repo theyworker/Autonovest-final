@@ -20,6 +20,9 @@ var temprResultValue;
 var carprice;
 var caramountraised;
 
+//to store user Balance
+var userBal;
+
 module.exports = {
   start: function(callback) {
     var self = this;
@@ -58,7 +61,7 @@ self.web3.eth.defaultAccount = self.web3.eth.accounts[0];
     var Carfunding_inst;
     Carfunding.deployed().then(function(instance) {
       Carfunding_inst = instance;
-      return Carfunding_inst.buycar(cid,{value:am,gas: 3000000});
+      return Carfunding_inst.buycar(cid,{value:am*1000000000000000000,gas: 3000000});
     }).catch(function(e) {
       console.log(e);
       callback("ERROR 404");
@@ -136,7 +139,7 @@ getCarPricinginfo : function(carid){
           carprice = result.toNumber()/1000000000000000000
 
           return Carfunding_inst.getAmountRaised.call(carid).then(function(ar){
-            caramountraised = ar.toNumber();
+            caramountraised = ar.toNumber()/1000000000000000000;
             console.log(caramountraised);
           })
         });
@@ -151,6 +154,31 @@ returnPriceinfo : function (){
 returnARinfo : function (){
   console.log('Car amountRaised here '+ caramountraised);
   return caramountraised;
+},
+
+getAccountBalance : function(){
+  var self = this;
+  Carfunding.setProvider(self.web3.currentProvider);
+
+      var Carfunding_inst;
+
+      Carfunding.deployed().then(function(instance){
+          Carfunding_inst = instance;
+
+          return Carfunding_inst.getUserBalance.call(self.account).then(function(userbal){
+              userBal = userbal/1000000000000000000;
+          })
+      })
+
+},
+
+returnUserAccountBal : function(){
+  return userBal;
+},
+
+returnUserAcc : function () {
+  var self = this;
+  return self.account;
 }
 
 

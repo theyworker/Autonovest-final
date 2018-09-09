@@ -48,20 +48,11 @@ truffle_connect.start(function(answer) {
     }, 100);
 
 console.log(numofcars+'outside');
-    // console.log(car1+'cars are there');
 
-    // var addy = truffle_connect.addnewcar('0x400074e5ce19781166Ea7c83FdA068a5C810783e',function(answer){
-    //   console.log(answer);
-    // });
-    // console.log(addy);
-    //
-    // var carsno = truffle_connect.getnumofcars();
-    // console.log(carsno+'cars are there');
-    //
-    //     var val = truffle_connect.buycar();
-    //     console.log(val);
     res.render('market',{title:'Market | Autonovest'});
   })
+
+
 
 
   router.get('/car/:carID', function(req,res,next){
@@ -144,6 +135,23 @@ res.render('purchase_sucesspage',{mdl: model, val : am });
 
   router.get('/newuser', function(req,res,next){
     res.render('newuser',{title:'Registration | Autonovest'});
+  })
+
+  router.get('/user', function(req,res,next){
+    truffle_connect.start(function(answer) {
+      console.log(answer);
+    });
+
+    truffle_connect.getAccountBalance();
+
+      var bal = 'Account Balance: '+truffle_connect.returnUserAccountBal()+' Ether';
+      console.log('User Balance is'+ bal);
+
+      var acc = 'Public Address: '+truffle_connect.returnUserAcc();
+      console.log('User Account is '+ acc);
+
+
+    res.render('userprofile',{title:'User Profile | Autonovest', blnc: bal, uname: acc});
   })
 
   router.get('/newadmin', function(req,res,next){

@@ -38,7 +38,7 @@ function newcar(uint priceofCar,string nump,string engn) public returns(uint){
 
 function buycar(uint cid) public payable{
   require(msg.value<=getPrice(cid)-getAmountRaised(cid));
-  Car storage tempCar = Cars[cid];  
+  Car storage tempCar = Cars[cid];
 tempCar.Owners[tempCar.numofowners++]= Owner(msg.sender,msg.value);
   tempCar.amountRaised += msg.value;
   increaseVolume(msg.value);
@@ -69,8 +69,14 @@ require(!tempCar.ForSale);
 
 }
 
+// to check balance of this contract
 function getBalance() public view returns(uint){
   return address(this).balance;
+}
+
+// to check user balance
+function getUserBalance(address userAddress) public view returns(uint){
+  return address(userAddress).balance;
 }
 
 function increaseVolume(uint TrxAmount)public{
