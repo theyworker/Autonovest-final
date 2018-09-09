@@ -11,11 +11,13 @@
 
 var carfunding = artifacts.require("carfunding");
 var crowdfunding = artifacts.require("Crowdfunding");
+var tt = artifacts.require("tt");
 // var car = artifacts.require("car");
 
 module.exports = function(deployer) {
   // deployer.deploy(carfunding);
   deployer.deploy(crowdfunding);
+  deployer.deploy(tt);
 
 
 
