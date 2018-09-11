@@ -58,6 +58,11 @@ console.log(numofcars+'outside');
     truffle_connect.start(function(answer) {
       console.log(answer);
     });
+
+    truffle_connect.getAccountBalance();
+
+      var bal = truffle_connect.returnUserAccountBal()+' Ether';
+
         var Car_Name = carDetails[c].name;
 
         var carsno = truffle_connect.getCarPricinginfo(c);
@@ -75,7 +80,8 @@ console.log(numofcars+'outside');
       availSTK: availStake,
       percenSol: percentageSold,
       amountr: ARinfo,
-      refno: c})
+      refno: c,
+    blnc : bal})
 
   })
 

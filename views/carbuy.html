@@ -7,7 +7,7 @@
  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<script src="../other/carprofile.js"></script>
+<script src="../other/carbuy.js"></script>
 </head>
 <body>
   <nav class="navbar">
@@ -48,13 +48,13 @@
       <input type="hidden" value="{{refno}}" name="carid1">
     </br>
     <button type="submit" class="btn btn-primary" style="width:45%;height:45px;margin-top:5px;"><strong>Buy</strong></button>
-    <button type="button" class="btn btn-info" style="width:45%;height:45px;margin-top:5px;"><strong>More details</strong></button>
+    <button type="button" data-id="{{refno}}" class="btn btn-info btn-md" style="width:45%;height:45px;margin-top:5px;"><strong>More details</strong></button>
         </form>
     </div>
 
     <div class="panel panel-info col-md-offset-8">
-      <div class="panel-heading">Panel with panel-info class</div>
-      <div class="panel-body">Panel Content</div>
+      <div class="panel-heading">Account Balance</div>
+      <div class="panel-body">{{blnc}}</div>
     </div>
 
   </div>

@@ -1,27 +1,21 @@
 App = {
   init: function() {
-  $(document).on('click', '.btn-purchase', App.buyevent);
+  $(document).on('click', '.btn-md', App.mdevent);
 
   },
-
-  buyevent: function(event) {
+  mdevent: function(event) {
 
     event.preventDefault();
-var amounttobuy = $('input:text').val();
-var carid = $("#buyamount").attr("name");
 
-  console.log(amounttobuy);
-
-    console.log(carid);
+    var carID = parseInt($(event.target).data('id'));
+    window.location.href = "/car/"+carID;
 
 
-  alert('Please confirm your purchase of'+amounttobuy+'Ether' );
-
-        
 
   }
 }
 
 $(function() {
   App.init();
+  console.log('working');
 });
