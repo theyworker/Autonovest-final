@@ -22,6 +22,7 @@ App = {
 
   buttonevents: function(){
     $(document).on('click', '.btn-md', App.mdevent);
+    $(document).on('click', '.btn-buy', App.buyevent);
   },
 
   mdevent: function(event) {
@@ -30,6 +31,16 @@ App = {
 
     var carID = parseInt($(event.target).data('id'));
     window.location.href = "/car/"+carID;
+
+
+  },
+
+  buyevent: function(event) {
+
+    event.preventDefault();
+
+    var carID = parseInt($(event.target).data('id'));
+    window.location.href = "/buy/"+carID;
 
 
   }

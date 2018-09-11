@@ -46,7 +46,7 @@ module.exports = {
         return;
       }
       self.accounts = accs;
-      self.account = self.accounts[2];
+      self.account = self.accounts[0];
       callback(self.account);
 
       Carfunding.web3.eth.defaultAccount = self.web3.eth.coinbase;
