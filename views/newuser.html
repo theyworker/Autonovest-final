@@ -29,22 +29,19 @@
   </nav>
 <div class="container">
   <div class="page-header">
-    <h1>New User Registration</h1>
+    <h1>New User Verification</h1>
   </div>
   <form action="/newuseracc" method="post">
     <div class="col-md-6">
       <div class="input">
-        <label for="name">Username</label>
+        <label for="name">Name</label>
         <input type="text" class="form-control" name="usrname" id="usrname">
       </div>
       <div class="input">
-        <label for="name">Password</label>
-        <input type="password" class="form-control" name="pswd" id="pswd">
+        <label for="name">Passport Number:</label>
+        <input type="text" class="form-control" name="ppnum" id="ppnum">
       </div>
-      <div class="input">
-        <label for="name">Confirm Password:</label>
-        <input type="password" class="form-control" name="cpswd" id="cpswd">
-      </div>
+
       <div class="input">
         <label for="name">Email</label>
         <input type="email" class="form-control" name="em" id="em">
@@ -55,7 +52,7 @@
     </div>
     <div class="col-md-8">
     <br/>
-    <button type="submit" name="send" class="btn btn-success">Register</button>
+    <button type="submit" name="send" class="btn btn-success">Verify</button>
   </div>
   </form>
 </div>

@@ -144,14 +144,32 @@ res.render('purchase_sucesspage',{mdl: model, val : am });
 
     truffle_connect.getAccountBalance();
 
-      var bal = 'Account Balance: '+truffle_connect.returnUserAccountBal()+' Ether';
-      console.log('User Balance is'+ bal);
+      var bal = truffle_connect.returnUserAccountBal()+' Ether';
 
-      var acc = 'Public Address: '+truffle_connect.returnUserAcc();
-      console.log('User Account is '+ acc);
+      var acc = truffle_connect.returnUserAcc();
+
+      truffle_connect.getUserName();
+      truffle_connect.getUserPassport();
+      truffle_connect.getUserEmail();
+      truffle_connect.getUserVerification();
 
 
-    res.render('userprofile',{title:'User Profile | Autonovest', blnc: bal, uname: acc});
+      var name = truffle_connect.returnUserName();
+      var passportfull = truffle_connect.returnUserPassport();
+      var email = truffle_connect.returnUserEmail();
+      if (passportfull) {
+        var passport = '********'+passportfull.substring(4);
+      }
+      var verified = truffle_connect.returnUserVerification();
+      var verifiedtxt;
+      if(verified == true){
+        verifiedtxt = "Verified";
+      }
+      else {
+        verifiedtxt = "Not Verified";
+      }
+
+    res.render('userprofile',{title:'User Profile | Autonovest', blnc: bal, uname: acc, nm: name, pp: passport, eml : email, vrfy : verifiedtxt});
   })
 
   router.get('/newadmin', function(req,res,next){
@@ -182,7 +200,17 @@ res.render('purchase_sucesspage',{mdl: model, val : am });
   router.post('/newuseracc', function(req,res,next){
     //console.log(req.body);
     var uname = req.body.usrname;
-    console.log(uname);
+    var uemail = req.body.em;
+    var ppNUM = req.body.ppnum;
+
+    truffle_connect.start(function(answer) {
+      console.log(answer);
+    });
+
+    truffle_connect.userVerification(uname,uemail,ppNUM);
+
+
+
     res.render('sucesspage',{title:'Autonovest - Crowdfunding for Autonomous Cars',
     objtype : 'User',
     objname: uname});

@@ -19,7 +19,10 @@ var temprResultValue;
 
 var carprice;
 var caramountraised;
-
+var userNAME;
+var userPASSPORT;
+var userEMAIL;
+var userVERIFY;
 //to store user Balance
 var userBal;
 
@@ -119,6 +122,23 @@ console.log(result);
     });
   },
 
+userVerification : function(name, email, passport){
+  var self = this;
+  Carfunding.setProvider(self.web3.currentProvider);
+  var Carfunding_inst;
+
+  Carfunding.deployed().then(function(instance){
+    Carfunding_inst = instance;
+    return Carfunding_inst.userverify(self.account, name, email, passport, {gas:3000000}).then(function(rs){
+console.log(rs);
+    })
+    //address adduser, string nameuser, string emailuser, string passpuser
+  }).catch(function(e) {
+    console.log(e);
+    callback("ERROR 404");
+  });
+},
+
 getResult : function(){
 
 return temprResultValue;
@@ -170,6 +190,82 @@ getAccountBalance : function(){
           })
       })
 
+},
+
+getUserName : function(){
+  var self = this;
+  Carfunding.setProvider(self.web3.currentProvider);
+
+      var Carfunding_inst;
+
+      Carfunding.deployed().then(function(instance){
+        Carfunding_inst = instance;
+        return Carfunding_inst.getUserName.call(self.account).then(function(name){
+
+          userNAME = name;
+        })
+      })
+
+},
+getUserPassport : function(){
+  var self = this;
+  Carfunding.setProvider(self.web3.currentProvider);
+
+      var Carfunding_inst;
+
+      Carfunding.deployed().then(function(instance){
+        Carfunding_inst = instance;
+        return Carfunding_inst.getUsePassport.call(self.account).then(function(pp){
+
+          userPASSPORT = pp;
+        })
+      })
+
+},
+getUserEmail : function(){
+  var self = this;
+  Carfunding.setProvider(self.web3.currentProvider);
+
+      var Carfunding_inst;
+
+      Carfunding.deployed().then(function(instance){
+        Carfunding_inst = instance;
+        return Carfunding_inst.getUserEmail.call(self.account).then(function(email){
+
+          userEMAIL = email;
+        })
+      })
+
+},
+
+getUserVerification : function(){
+  var self = this;
+  Carfunding.setProvider(self.web3.currentProvider);
+
+      var Carfunding_inst;
+
+      Carfunding.deployed().then(function(instance){
+        Carfunding_inst = instance;
+        return Carfunding_inst.getUserVerified.call(self.account).then(function(vrfy){
+          userVERIFY = vrfy;
+        })
+      })
+
+},
+
+returnUserName : function(){
+  return userNAME;
+},
+returnUserVerification : function(){
+  return userVERIFY;
+},
+
+returnUserPassport : function(){
+  return userPASSPORT;
+},
+
+returnUserEmail : function(){
+  return userEMAIL;
 },
 
 returnUserAccountBal : function(){
