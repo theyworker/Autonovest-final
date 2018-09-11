@@ -3,18 +3,21 @@ App = {
     // Load pets into the boxes
     $.getJSON('other/carsnew.json', function(data) {
       var petsRow = $('#carsRow');
-      var petTemplate = $('#carTemplate');
+      var carDisplayTemp = $('#carTemplate');
       for (i = 0; i < data.length; i ++) {
-        petTemplate.find('.panel-title').text(data[i].name);
-        petTemplate.find('img').attr('src', data[i].picture);
-        petTemplate.find('.car-Manufacturer').text(data[i].Manufacturer);
-        petTemplate.find('.car-yearofmanu').text(data[i].yearofmanu);
-        petTemplate.find('.car-EngineNumber').text(data[i].EngineNumber);
-        petTemplate.find('.btn-buy').attr('data-id', data[i].id);
-        petTemplate.find('.btn-md').attr('data-id', data[i].id);
+      if(data[i].ForSale){
+        console.log(data[i].ForSale);
+        carDisplayTemp.find('.panel-title').text(data[i].name);
+        carDisplayTemp.find('img').attr('src', data[i].picture);
+        carDisplayTemp.find('.car-Manufacturer').text(data[i].Manufacturer);
+        carDisplayTemp.find('.car-yearofmanu').text(data[i].yearofmanu);
+        carDisplayTemp.find('.car-EngineNumber').text(data[i].EngineNumber);
+        carDisplayTemp.find('.btn-buy').attr('data-id', data[i].id);
+        carDisplayTemp.find('.btn-md').attr('data-id', data[i].id);
 
-        petsRow.append(petTemplate.html());
+        petsRow.append(carDisplayTemp.html());
       }
+    }
     });
 
     return App.buttonevents();

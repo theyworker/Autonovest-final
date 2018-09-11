@@ -13,7 +13,7 @@ const crowdfunding_artifacts = require('../build/contracts/Crowdfunding.json');
 var Carfunding = contract(crowdfunding_artifacts);
 
 
-
+var carForSale;
 
 var temprResultValue;
 
@@ -140,8 +140,9 @@ console.log(rs);
 },
 
 getResult : function(){
-
-return temprResultValue;
+var tempvar = temprResultValue;
+temprResultValue = "";
+return tempvar;
 
 },
 
@@ -166,14 +167,35 @@ getCarPricinginfo : function(carid){
       })
 },
 
+getCarForSale : function(carid){
+  var self = this;
+  Carfunding.setProvider(self.web3.currentProvider);
+
+      var Carfunding_inst;
+      Carfunding.deployed().then(function(instance){
+        Carfunding_inst = instance;
+        return Carfunding_inst.getForSale.call(carid).then(function(forsale){
+          carForSale = forsale;
+        })
+      })
+},
+
+returnForSale : function (){
+  var tempvar = carForSale;
+  carForSale="";
+  return tempvar;
+},
+
 returnPriceinfo : function (){
-  console.log('Car price here '+ carprice);
-  return carprice;
+  var tempvar = carprice;
+  carprice="";
+  return tempvar;
 },
 
 returnARinfo : function (){
-  console.log('Car amountRaised here '+ caramountraised);
-  return caramountraised;
+  var tempvar = caramountraised;
+  caramountraised = "";
+  return tempvar;
 },
 
 getAccountBalance : function(){
@@ -254,22 +276,32 @@ getUserVerification : function(){
 },
 
 returnUserName : function(){
-  return userNAME;
+  var tempvar = userNAME;
+  userNAME = "";
+  return tempvar;
 },
 returnUserVerification : function(){
-  return userVERIFY;
+var tempvar = userVERIFY;
+userVERIFY = "";
+  return tempvar;
 },
 
 returnUserPassport : function(){
-  return userPASSPORT;
+var tempvar = userPASSPORT;
+userPASSPORT = "";
+  return tempvar;
 },
 
 returnUserEmail : function(){
-  return userEMAIL;
+var tempvar = userEMAIL;
+userEMAIL ="";
+  return tempvar;
 },
 
 returnUserAccountBal : function(){
-  return userBal;
+var tempvar = userBal;
+userBal= "";
+  return tempvar;
 },
 
 returnUserAcc : function () {

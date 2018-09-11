@@ -6,13 +6,11 @@ module.exports = function(express, app){
   // var carDetails = require('../src/other/cars')
   var carDetails = require('../src/other/carsnew')
   const truffle_connect = require('../connection/app.js');
-
-  const multer = require("multer");
-
+const bgint = require('../connection/backgroundinteractions.js');
+  // const multer = require("multer");
 
 
   router.get('/', function(req,res,next){
-
 
     res.render('index',{title:'Autonovest - Crowdfunding for Autonomous Cars'});
   })
@@ -155,6 +153,9 @@ truffle_connect.start(function(answer) {
 var f= truffle_connect.buycar(carid,amount);
 var model = carDetails[carid].name;
 var am = amount+' Ether '
+
+bgint.updateForSale(carid);
+
 
 res.render('purchase_sucesspage',{mdl: model, val : am });
   })
@@ -312,7 +313,9 @@ carDetails.push({"id":cid,
 "Manufacturer":cmanuf,
 "EngineNumber":engnum,
 "description":description,
-"Numberplate":cregnumplt});
+"Numberplate":cregnumplt,
+"ForSale":true,
+"CarActive": true});
 
 var fs = require('fs');
 
