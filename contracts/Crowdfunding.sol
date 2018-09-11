@@ -61,6 +61,7 @@ function newcar(uint priceofCar,string nump,string engn) public returns(uint){
 
 function buycar(uint cid) public payable{
   require(msg.value<=getPrice(cid)-getAmountRaised(cid));
+  require(Users[msg.sender].verified == true);
   Car storage tempCar = Cars[cid];
 tempCar.Owners[tempCar.numofowners++]= Owner(msg.sender,msg.value);
   tempCar.amountRaised += msg.value;
