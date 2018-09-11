@@ -1,6 +1,7 @@
-// Allows us to use ES6 in our migrations and tests.
+// Allows us to use ES6(A new Javascript version) in our migrations and tests.
 require('babel-register')
 
+//truffle configuration file
 module.exports = {
   networks: {
     development: {

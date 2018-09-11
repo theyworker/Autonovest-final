@@ -4,6 +4,7 @@ contract Crowdfunding{
 
   uint numofcars;
   uint TotalVolume;
+
   // Defines the owners
   struct Owner{
     address owner_addr;
@@ -63,7 +64,7 @@ function newcar(uint priceofCar,string nump,string engn) public returns(uint){
 function buycar(uint cid) public payable{
   require(msg.value<=getPrice(cid)-getAmountRaised(cid));
     User storage tempUsr = Users[msg.sender];
-    /* require(tempUsr.verified); */
+    require(tempUsr.verified);
   /* emit buy(tempUsr.verified); */
   /* require(Users[msg.sender].verified == true); */
   Car storage tempCar = Cars[cid];

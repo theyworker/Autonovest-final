@@ -1,12 +1,12 @@
 {
   "name": "Express-Box",
   "version": "0.0.2",
-  "description": "Make API-Endpoints for Ethereum BlockChain",
+  "description": "Crowdfunding Platform for Autonomous Cars",
   "scripts": {
     "start": "nodemon server.js",
     "test": "truffle test test/*"
   },
-  "author": "Arvind & Pranav",
+  "author": "Devaka",
   "license": "MIT",
   "devDependencies": {
     "babel-cli": "^6.22.2",
