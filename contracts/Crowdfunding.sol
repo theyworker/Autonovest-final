@@ -43,11 +43,12 @@ contract Crowdfunding{
 
     mapping (address=>User)Users;
 
-  constructor() public {
+  constructor() public payable {
     numofcars = 0;
     TotalVolume = 0;
   }
 
+event buy(bool whatshappening);
 
 
 function newcar(uint priceofCar,string nump,string engn) public returns(uint){
@@ -61,11 +62,14 @@ function newcar(uint priceofCar,string nump,string engn) public returns(uint){
 
 function buycar(uint cid) public payable{
   require(msg.value<=getPrice(cid)-getAmountRaised(cid));
-  require(Users[msg.sender].verified == true);
+    User storage tempUsr = Users[msg.sender];
+    /* require(tempUsr.verified); */
+  /* emit buy(tempUsr.verified); */
+  /* require(Users[msg.sender].verified == true); */
   Car storage tempCar = Cars[cid];
 tempCar.Owners[tempCar.numofowners++]= Owner(msg.sender,msg.value);
   tempCar.amountRaised += msg.value;
-  User storage tempUsr = Users[msg.sender];
+
   tempUsr.Ownerships[tempUsr.numofinvestments++] = Ownership(cid, msg.value);
   increaseVolume(msg.value);
   closeSale(cid);

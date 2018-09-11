@@ -52,7 +52,32 @@ console.log(numofcars+'outside');
     res.render('market',{title:'Market | Autonovest'});
   })
 
+  router.get('/buy/:carID', function(req,res,next){
+    var c = parseInt(req.params.carID);
 
+    truffle_connect.start(function(answer) {
+      console.log(answer);
+    });
+        var Car_Name = carDetails[c].name;
+
+        var carsno = truffle_connect.getCarPricinginfo(c);
+
+        var priceinfo = truffle_connect.returnPriceinfo();
+
+        var ARdata = truffle_connect.returnARinfo();
+
+        var ARinfo = ARdata;
+
+        var availStake = priceinfo - ARinfo;
+        var percentageSold = "width:"+(ARinfo/priceinfo).toFixed(2)*100+"%";
+    res.render('carbuy',{title:'Car Buy | Autonovest', cname:Car_Name,
+     price: priceinfo,
+      availSTK: availStake,
+      percenSol: percentageSold,
+      amountr: ARinfo,
+      refno: c})
+
+  })
 
 
   router.get('/car/:carID', function(req,res,next){
