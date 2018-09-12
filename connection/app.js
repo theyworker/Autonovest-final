@@ -125,6 +125,7 @@ console.log(result);
   },
 
   carincome : function(car,dist, time){
+      var self = this;
   var totalamount = (dist*PricePerKM)+(time*PriceperMinute);
 console.log('Total AMount'+totalamount);
   Carfunding.setProvider(self.web3.currentProvider);

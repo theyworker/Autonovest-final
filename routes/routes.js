@@ -48,9 +48,9 @@ const bgint = require('../connection/backgroundinteractions.js');
    truffle_connect.start(function(answer) {
      console.log(answer);
    });
-
+   var cost = (dist*0.02)+(time*0.01)+ " Ether";
    truffle_connect.carincome(carid,dist,time);
-
+   res.render('ridesucesspage',{title:'Sucess | Autonovest', am:cost});
  })
 
   router.get('/market', function(req,res,next){
