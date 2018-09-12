@@ -210,6 +210,19 @@ carDistributeIncome : function(cid){
 
 },
 
+claimIncome : function(){
+  var self = this;
+  Carfunding.setProvider(self.web3.currentProvider);
+
+    var Carfunding_inst;
+    Carfunding.deployed().then(function(instance){
+      Carfunding_inst = instance;
+      return Carfunding_inst.claimEarnings(self.account);
+    })
+
+
+},
+
 returnForSale : function (){
   var tempvar = carForSale;
   carForSale="";

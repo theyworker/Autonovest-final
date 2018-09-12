@@ -6,9 +6,9 @@ console.log($('#verified').text());
           $('#verifypic').attr("src","../Verify.png");
           $('#unverifiedwarning').hide();
     }
-    else {
+    else{
         $('#verifypic').attr("src","../Not-Verified.png");
-
+        $('#claim').hide();
     }
 
     return App.buttonevents();
@@ -16,6 +16,11 @@ console.log($('#verified').text());
 
   buttonevents: function(){
     $(document).on('click', '.btn-verify', App.verifypage);
+    $(document).on('click', '.btn-claim', App.claim);
+  },
+
+  claim : function(event){
+    window.location.href = "/claim"
   },
 
   verifypage: function(event) {

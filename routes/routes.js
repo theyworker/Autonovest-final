@@ -40,6 +40,16 @@ const bgint = require('../connection/backgroundinteractions.js');
   res.render('recordhire',{title:'Record Hire | Autonovest', refno:c});
 })
 
+router.get('/claim', function(req,res,next){
+  truffle_connect.start(function(answer) {
+    console.log(answer);
+  });
+
+  truffle_connect.claimIncome();
+
+    res.redirect('/user');
+})
+
  router.post('/newride', function(req,res,next){
    var dist = req.body.val;
    var time = req.body.time;
