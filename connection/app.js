@@ -26,6 +26,8 @@ var userVERIFY;
 //to store user Balance
 var userBal;
 
+var PricePerKM = 20000000000000000;
+var PriceperMinute = 10000000000000000;
 module.exports = {
   start: function(callback) {
     var self = this;
@@ -120,6 +122,21 @@ console.log(result);
       console.log(e);
       callback("ERROR 404");
     });
+  },
+
+  carincome : function(car,dist, time){
+  var totalamount = (dist*PricePerKM)+(time*PriceperMinute);
+console.log('Total AMount'+totalamount);
+  Carfunding.setProvider(self.web3.currentProvider);
+  var Carfunding_inst;
+
+  Carfunding.deployed().then(function(instance) {
+    Carfunding_inst = instance;
+    return Carfunding_inst.carincome(car,{value:totalamount}).then(function(){
+
+    })
+  })
+
   },
 
 userVerification : function(name, email, passport){

@@ -45,7 +45,11 @@ const bgint = require('../connection/backgroundinteractions.js');
    var time = req.body.time;
    var carid = req.body.cid;
 
-   // continue from here
+   truffle_connect.start(function(answer) {
+     console.log(answer);
+   });
+
+   truffle_connect.carincome(carid,dist,time);
 
  })
 
