@@ -41,7 +41,7 @@ App = {
     event.preventDefault();
 
     var carID = parseInt($(event.target).data('id'));
-    window.location.href = "/car/"+carID;
+    window.location.href = "/carinfo/"+carID;
 
 
   },

@@ -84,6 +84,58 @@ console.log(numofcars+'outside');
   })
 
 
+  router.get('/carinfo/:carID', function(req,res,next){
+
+
+
+    var c = parseInt(req.params.carID);
+      if (!isNaN(c)){ //handling useless requests
+
+
+        truffle_connect.start(function(answer) {
+          console.log(answer);
+        });
+
+            var carsno = truffle_connect.getCarPricinginfo(c);
+
+            var priceinfo = truffle_connect.returnPriceinfo();
+            console.log('Prices are'+priceinfo);
+
+var ARdata = truffle_connect.returnARinfo();
+console.log(typeof(ARdata));
+            var ARinfo = ARdata;
+            console.log('Prices are'+ARinfo);
+
+            var availStake = priceinfo - ARinfo;
+            var percentageSold = "width:"+(ARinfo/priceinfo).toFixed(2)*100+"%";
+
+console.log(percentageSold);
+
+    var Car_Name = carDetails[c].name;
+    var Car_pic = "../"+carDetails[c].picture;
+    var Car_yom = carDetails[c].yearofmanu;
+    var Car_manu = carDetails[c].Manufacturer;
+    var Car_EN = carDetails[c].EngineNumber;
+    var Car_des = carDetails[c].description;
+    var Car_np = carDetails[c].Numberplate;
+
+    // console.log(Car_Name,Car_pic,Car_yom,Car_manu,Car_EN);
+    res.render('carprofile_admin',{title:'Car Profile | Autonovest',
+     cname:Car_Name,
+     cpic:Car_pic,
+     manu:Car_manu,
+     yom:Car_yom,
+     desc: Car_des,
+     np:Car_np,
+     price: priceinfo,
+     amountr: ARinfo,
+     availSTK: availStake,
+     percenSol: percentageSold,
+     refno: c
+   });
+  }
+
+  })
   router.get('/car/:carID', function(req,res,next){
 
 
