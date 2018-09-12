@@ -14,7 +14,7 @@ else {
   totalamount = disamount + timeamount;
 }
 
-  $('#calcdis').text(totalamount);
+  $('#calcdis').text("Hire Amount:"+totalamount);
 })
 
 $('#time').keyup(function(){
@@ -25,7 +25,7 @@ $('#time').keyup(function(){
   else {
     totalamount = disamount + timeamount;
   }
-  $('#calcdis').text(totalamount);
+  $('#calcdis').text("Hire Amount:"+totalamount);
 })
 
   },

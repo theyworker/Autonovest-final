@@ -9,6 +9,7 @@ contract Crowdfunding{
   struct Owner{
     address owner_addr;
     uint value;
+    uint equity; // out of 100,000
   }
 
   struct Car{
@@ -34,6 +35,7 @@ contract Crowdfunding{
     string passportnum;
     bool verified;
     uint numofinvestments;
+    uint balance;
     mapping (uint=>Ownership) Ownerships;
   }
 
@@ -49,7 +51,7 @@ contract Crowdfunding{
     TotalVolume = 0;
   }
 
-event buy(bool whatshappening);
+
 
 
 function newcar(uint priceofCar,string nump,string engn) public returns(uint){
@@ -65,16 +67,28 @@ function buycar(uint cid) public payable{
   require(msg.value<=getPrice(cid)-getAmountRaised(cid));
     User storage tempUsr = Users[msg.sender];
     require(tempUsr.verified);
-  /* emit buy(tempUsr.verified); */
   /* require(Users[msg.sender].verified == true); */
   Car storage tempCar = Cars[cid];
-tempCar.Owners[tempCar.numofowners++]= Owner(msg.sender,msg.value);
+
+  uint eq = equityercent(msg.value,tempCar.price);
+
+  tempCar.Owners[tempCar.numofowners++]= Owner(msg.sender,msg.value,eq);
   tempCar.amountRaised += msg.value;
 
   tempUsr.Ownerships[tempUsr.numofinvestments++] = Ownership(cid, msg.value);
   increaseVolume(msg.value);
   closeSale(cid);
 }
+
+function equityercent(uint investment, uint priceofCar) private constant returns(uint) {
+    //this function returns equity against 100,000
+
+        uint _numerator  = investment * 10 ** (6);
+        // with rounding of last digit
+        uint equity =  ((_numerator / priceofCar) + 5) / 10;
+        return (equity);
+  }
+
 
 function getNumofCars()public view returns(uint){
   return numofcars;
@@ -150,7 +164,7 @@ function allcarsofUser(address userAd)public view returns(uint){
   return totalInv;
 }
 function userverify(address adduser, string nameuser, string emailuser, string passpuser)public{
-  Users[adduser] = User(nameuser,emailuser,passpuser,true,0);
+  Users[adduser] = User(nameuser,emailuser,passpuser,true,0,0);
 }
 function getUserName(address adduser)public view returns(string){
   return Users[adduser].name;
