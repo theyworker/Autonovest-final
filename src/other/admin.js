@@ -8,7 +8,14 @@ App = {
 
         carDisplayTemp.find('.panel-title').text(data[i].name);
         carDisplayTemp.find('img').attr('src', data[i].picture);
-        carDisplayTemp.find('.car-Manufacturer').text(data[i].Manufacturer);
+        var sts;
+        if(data[i].CarActive){
+          sts = "Active";
+        }
+        else {
+          sts =  "Not Active";
+        }
+        carDisplayTemp.find('.car-act').text(sts);
         var salests;
         if(data[i].ForSale){
           salests = "On Sale";
@@ -18,8 +25,8 @@ App = {
         }
         carDisplayTemp.find('.car-sts').text(salests);
         carDisplayTemp.find('.car-EngineNumber').text(data[i].EngineNumber);
-        carDisplayTemp.find('.btn-buy').attr('data-id', data[i].id);
         carDisplayTemp.find('.btn-md').attr('data-id', data[i].id);
+        carDisplayTemp.find('.btn-dist').attr('data-id', data[i].id);
 
 
 
@@ -33,6 +40,7 @@ App = {
 
   buttonevents: function(){
     $(document).on('click', '.btn-md', App.mdevent);
+    $(document).on('click', '.btn-dist', App.distIncevent);
 
   },
 
@@ -42,6 +50,16 @@ App = {
 
     var carID = parseInt($(event.target).data('id'));
     window.location.href = "/carinfo/"+carID;
+
+
+  },
+
+  distIncevent : function(event) {
+
+    event.preventDefault();
+
+    var carID = parseInt($(event.target).data('id'));
+    window.location.href = "/distincome/"+carID;
 
 
   },

@@ -54,23 +54,20 @@ const bgint = require('../connection/backgroundinteractions.js');
  })
 
   router.get('/market', function(req,res,next){
-var numofcars;
-truffle_connect.start(function(answer) {
-  console.log(answer);
-});
-    var carsno = truffle_connect.getnumofcars();
-
-//timing out for 100ms t
-    setTimeout(function () {
-        var car1 = truffle_connect.getResult();
-        console.log(car1+' cars are there');
-        numofcars = car1;
-    }, 100);
-
-console.log(numofcars+'outside');
 
     res.render('market',{title:'Market | Autonovest'});
   })
+
+  router.get('/distincome/:carID', function(req,res,next){
+      var c = parseInt(req.params.carID);
+
+      truffle_connect.start(function(answer) {
+        console.log(answer);
+      });
+
+      truffle_connect.carDistributeIncome(c);
+      res.redirect('/admin');
+    })
 
   router.get('/buy/:carID', function(req,res,next){
     var c = parseInt(req.params.carID);
@@ -95,6 +92,7 @@ console.log(numofcars+'outside');
 
         var availStake = priceinfo - ARinfo;
         var percentageSold = "width:"+(ARinfo/priceinfo).toFixed(2)*100+"%";
+
     res.render('carbuy',{title:'Car Buy | Autonovest', cname:Car_Name,
      price: priceinfo,
       availSTK: availStake,

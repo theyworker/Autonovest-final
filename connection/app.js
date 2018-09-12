@@ -197,6 +197,18 @@ getCarForSale : function(carid){
         })
       })
 },
+carDistributeIncome : function(cid){
+  var self = this;
+  Carfunding.setProvider(self.web3.currentProvider);
+
+    var Carfunding_inst;
+    Carfunding.deployed().then(function(instance){
+      Carfunding_inst = instance;
+      return Carfunding_inst.distIncome(cid);
+    })
+
+
+},
 
 returnForSale : function (){
   var tempvar = carForSale;
