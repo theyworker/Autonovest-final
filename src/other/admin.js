@@ -5,8 +5,7 @@ App = {
       var petsRow = $('#carsRow');
       var carDisplayTemp = $('#carTemplate');
       for (i = 0; i < data.length; i ++) {
-      if(data[i].ForSale){
-        console.log(data[i].ForSale);
+
         carDisplayTemp.find('.panel-title').text(data[i].name);
         carDisplayTemp.find('img').attr('src', data[i].picture);
         carDisplayTemp.find('.car-Manufacturer').text(data[i].Manufacturer);
@@ -16,7 +15,7 @@ App = {
         carDisplayTemp.find('.btn-md').attr('data-id', data[i].id);
 
         petsRow.append(carDisplayTemp.html());
-      }
+
     }
     });
 
@@ -25,7 +24,7 @@ App = {
 
   buttonevents: function(){
     $(document).on('click', '.btn-md', App.mdevent);
-    $(document).on('click', '.btn-buy', App.buyevent);
+
   },
 
   mdevent: function(event) {
@@ -38,19 +37,10 @@ App = {
 
   },
 
-  buyevent: function(event) {
 
-    event.preventDefault();
-
-    var carID = parseInt($(event.target).data('id'));
-    window.location.href = "/buy/"+carID;
-
-
-  }
 }
 
 $(function() {
-  console.log('Market js is running');
   $(window).load(function() {
     App.init();
 

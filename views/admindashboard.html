@@ -6,6 +6,7 @@
  <meta name="viewport" content="width=device-width, initial-scale=1">
  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body>
@@ -16,11 +17,7 @@
       </div>
       <div>
         <ul class="nav navbar-nav navbar-right">
-          <li class="active"><a href="index.html">Home</a></li>
-          <li><a href="#">Get Started</a></li>
-          <li><a href="#">Market</a></li>
-          <li><a href="/faq">FAQ</a></li>
-          <li><a href="contact">Contact</a></li>
+
         </ul>
       </div>
 
@@ -54,15 +51,45 @@
       function showcarform(){
         window.location.href = "/addcar";
       }
-      function showmanuform(){
-        window.location.href = "/addmanu";
-      }
       </script>
       <button type="button" onclick="showcarform()" name="addcar" title="Add Car" style="width:150px">ADD CAR</button>
-      <button type="button" onclick="showmanuform()" name="addmanu" title="Add Manu" style="width:150px">ADD Manufacturer</button>
 
     </div>
   </div>
+
+  <div class="col-md-12">
+              <div id="carTemplate" style="display: none;">
+                <div class="col-sm-6 col-md-4 col-lg-3">
+                  <div class="panel panel-default panel-pet">
+                    <div class="panel-heading">
+
+                      <h3 class="panel-title">Car</h3>
+                    </div>
+                    <div class="panel-body">
+
+                      <img alt="140x140" data-src="holder.js/140x140" class="img-rounded img-center" style="width: 100%; " data-holder-rendered="true">
+
+                      <br/><br/>
+
+                      <strong>Manufacturer</strong>: <span class="car-Manufacturer">Unknown</span><br/>
+
+                      <strong>Model</strong>: <span class="car-yearofmanu">Unknown</span><br/>
+
+                      <strong>Engine Number</strong>:<span class="car-EngineNumber">Unknown</span><br/><br/>
+                      <!-- Fix the Button!!! #issues -->
+                      <button class="btn btn-default btn-md" type="">More Details</button>
+                      <button class="btn btn-default btn-buy" type="button" data-id="0">Buy</button>
+
+                    </div>
+
+                  </div>
+
+                </div>
+
+              </div>
+  </div>
 </div>
+
+  <script src="other/admin.js"></script>
 </body>
 </html>
