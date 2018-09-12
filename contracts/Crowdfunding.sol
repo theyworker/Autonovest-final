@@ -115,6 +115,12 @@ tempCar.incomeBal += msg.value;
 
 }
 
+function claimEarnings(address userad)public {
+  uint earnings = Users[userad].balance;
+  Users[userad].balance = 0;
+  userad.transfer(earnings);
+}
+
 function distIncome(uint cid) public {
       Car storage tempCar = Cars[cid];
       uint tempBal = tempCar.incomeBal;
