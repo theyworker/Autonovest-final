@@ -80,7 +80,7 @@ function buycar(uint cid) public payable{
   closeSale(cid);
 }
 
-function equityercent(uint investment, uint priceofCar) private constant returns(uint) {
+function equityercent(uint investment, uint priceofCar) private pure returns(uint) {
     //this function returns equity against 100,000
 
         uint _numerator  = investment * 10 ** (6);
@@ -113,12 +113,26 @@ require(!tempCar.ForSale);
 
 tempCar.incomeBal += msg.value;
 
-
 }
 
+function distIncome(uint cid) public {
+      Car storage tempCar = Cars[cid];
+      uint tempBal = tempCar.incomeBal;
+      tempCar.incomeBal = 0;
+      uint i= 0;
+      uint payout = tempBal/100000;
+      for(i;i<tempCar.numofowners;i++){
+        Users[tempCar.Owners[i].owner_addr].balance = tempCar.Owners[i].equity*payout;
+      }
+
+}
 // to check balance of this contract
 function getBalance() public view returns(uint){
   return address(this).balance;
+}
+
+function getUserIncomeBalance(address userAddress) public view returns(uint){
+  return Users[userAddress].balance;
 }
 
 // to check user balance
