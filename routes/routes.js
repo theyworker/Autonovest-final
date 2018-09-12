@@ -31,6 +31,24 @@ const bgint = require('../connection/backgroundinteractions.js');
     res.render('admindashboard',{title:'Dashboard | Autonovest'});
   })
 
+  router.get('/ridesharing', function(req,res,next){
+    res.render('ridesharingdashboard',{title:'Ridesharing Dashboard | Autonovest'});
+  })
+
+  router.get('/ride/:carID', function(req,res,next){
+  var c = parseInt(req.params.carID);
+  res.render('recordhire',{title:'Record Hire | Autonovest', refno:c});
+})
+
+ router.post('/newride', function(req,res,next){
+   var dist = req.body.val;
+   var time = req.body.time;
+   var carid = req.body.cid;
+
+   // continue from here
+
+ })
+
   router.get('/market', function(req,res,next){
 var numofcars;
 truffle_connect.start(function(answer) {
