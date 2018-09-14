@@ -1,6 +1,6 @@
 App = {
   init: function() {
-    // Load pets into the boxes
+    // Load cars into the boxes
     $.getJSON('other/carsnew.json', function(data) {
       var petsRow = $('#carsRow');
       var carDisplayTemp = $('#carTemplate');
@@ -19,6 +19,7 @@ App = {
         var salests;
         if(data[i].ForSale){
           salests = "On Sale";
+          $('.btn-dist').hide();
         }
         else {
           salests =  "SOLD";

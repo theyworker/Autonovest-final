@@ -93,6 +93,8 @@ router.get('/claim', function(req,res,next){
         var Car_Name = carDetails[c].name;
 
         var carsno = truffle_connect.getCarPricinginfo(c);
+setTimeout(function () {
+
 
         var priceinfo = truffle_connect.returnPriceinfo();
 
@@ -110,6 +112,7 @@ router.get('/claim', function(req,res,next){
       amountr: ARinfo,
       refno: c,
     blnc : bal})
+    }, 600);
 
   })
 
@@ -128,18 +131,7 @@ router.get('/claim', function(req,res,next){
 
             var carsno = truffle_connect.getCarPricinginfo(c);
 
-            var priceinfo = truffle_connect.returnPriceinfo();
-            console.log('Prices are'+priceinfo);
 
-var ARdata = truffle_connect.returnARinfo();
-console.log(typeof(ARdata));
-            var ARinfo = ARdata;
-            console.log('Prices are'+ARinfo);
-
-            var availStake = priceinfo - ARinfo;
-            var percentageSold = "width:"+(ARinfo/priceinfo).toFixed(2)*100+"%";
-
-console.log(percentageSold);
 
     var Car_Name = carDetails[c].name;
     var Car_pic = "../"+carDetails[c].picture;
@@ -149,7 +141,22 @@ console.log(percentageSold);
     var Car_des = carDetails[c].description;
     var Car_np = carDetails[c].Numberplate;
 
-    // console.log(Car_Name,Car_pic,Car_yom,Car_manu,Car_EN);
+setTimeout(function () {
+
+
+    var priceinfo = truffle_connect.returnPriceinfo();
+    console.log('Prices are'+priceinfo);
+
+var ARdata = truffle_connect.returnARinfo();
+console.log(typeof(ARdata));
+    var ARinfo = ARdata;
+    console.log('Prices are'+ARinfo);
+
+    var availStake = priceinfo - ARinfo;
+    var percentageSold = "width:"+(ARinfo/priceinfo).toFixed(2)*100+"%";
+
+console.log(percentageSold);
+
     res.render('carprofile_admin',{title:'Car Profile | Autonovest',
      cname:Car_Name,
      cpic:Car_pic,
@@ -163,6 +170,7 @@ console.log(percentageSold);
      percenSol: percentageSold,
      refno: c
    });
+ }, 1000);
   }
 
   })
@@ -180,19 +188,6 @@ console.log(percentageSold);
 
             var carsno = truffle_connect.getCarPricinginfo(c);
 
-            var priceinfo = truffle_connect.returnPriceinfo();
-            console.log('Prices are'+priceinfo);
-
-var ARdata = truffle_connect.returnARinfo();
-console.log(typeof(ARdata));
-            var ARinfo = ARdata;
-            console.log('Prices are'+ARinfo);
-
-            var availStake = priceinfo - ARinfo;
-            var percentageSold = "width:"+(ARinfo/priceinfo).toFixed(2)*100+"%";
-
-console.log(percentageSold);
-
     var Car_Name = carDetails[c].name;
     var Car_pic = "../"+carDetails[c].picture;
     var Car_yom = carDetails[c].yearofmanu;
@@ -201,20 +196,33 @@ console.log(percentageSold);
     var Car_des = carDetails[c].description;
     var Car_np = carDetails[c].Numberplate;
 
-    // console.log(Car_Name,Car_pic,Car_yom,Car_manu,Car_EN);
-    res.render('carprofile',{title:'Car Profile | Autonovest',
-     cname:Car_Name,
-     cpic:Car_pic,
-     manu:Car_manu,
-     yom:Car_yom,
-     desc: Car_des,
-     np:Car_np,
-     price: priceinfo,
-     amountr: ARinfo,
-     availSTK: availStake,
-     percenSol: percentageSold,
-     refno: c
-   });
+setTimeout(function () {
+var ARdata = truffle_connect.returnARinfo();
+  var priceinfo = truffle_connect.returnPriceinfo();
+
+  console.log(typeof(ARdata));
+              var ARinfo = ARdata;
+              console.log('Prices are'+ARinfo);
+
+              var availStake = priceinfo - ARinfo;
+              var percentageSold = "width:"+(ARinfo/priceinfo).toFixed(2)*100+"%";
+
+  res.render('carprofile',{title:'Car Profile | Autonovest',
+   cname:Car_Name,
+   cpic:Car_pic,
+   manu:Car_manu,
+   yom:Car_yom,
+   desc: Car_des,
+   np:Car_np,
+   price: priceinfo,
+   amountr: ARinfo,
+   availSTK: availStake,
+   percenSol: percentageSold,
+   refno: c
+ });
+
+}, 600);
+
   }
 
   })
@@ -258,15 +266,20 @@ res.render('purchase_sucesspage',{mdl: model, val : am });
 
     truffle_connect.getAccountBalance();
 
-      var bal = truffle_connect.returnUserAccountBal()+' Ether';
 
-      var acc = truffle_connect.returnUserAcc();
 
       truffle_connect.getUserName();
       truffle_connect.getUserPassport();
       truffle_connect.getUserEmail();
       truffle_connect.getUserVerification();
 
+
+setTimeout(function () {
+
+
+      var bal = truffle_connect.returnUserAccountBal()+' Ether';
+
+      var acc = truffle_connect.returnUserAcc();
 
       var name = truffle_connect.returnUserName();
       var passportfull = truffle_connect.returnUserPassport();
@@ -284,6 +297,7 @@ res.render('purchase_sucesspage',{mdl: model, val : am });
       }
 
     res.render('userprofile',{title:'User Profile | Autonovest', blnc: bal, uname: acc, nm: name, pp: passport, eml : email, vrfy : verifiedtxt});
+}, 1000);
   })
 
   router.get('/newadmin', function(req,res,next){
@@ -330,9 +344,6 @@ res.render('purchase_sucesspage',{mdl: model, val : am });
     objname: uname});
   })
 
-  router.get('/addmanu', function(req,res,next){
-    res.render('addmanufacturer',{title:'Add Manufacturer | Autonovest'});
-  })
 
   router.post('/newmanu', function(req,res,next){
     //console.log(req.body);
@@ -341,23 +352,8 @@ res.render('purchase_sucesspage',{mdl: model, val : am });
     var memail = req.body.email;
     var mtele = req.body.tel;
 
-
-
-//     var sql = "INSERT INTO Manufacturer VALUES ( '"+maddress+"','"+memail+"','"+mtele+"', NULL"+",'"+mname+"');";
-// con.query(sql, function (err, result) {
-//   if (err) throw err
-//   console.log('Inserted 1 record')
-//   res.render('sucesspage',{title:'Autonovest - Crowdfunding for Autonomous Cars',
-//   objtype : 'Manufacturer',
-//   objname: mname});
-
-
-    // console.log(mname,maddress,memail, mtele);
-
-
-  // })
-
   })
+
 router.post('/login-attempt', function(req,res,next){
   var usernm = req.body.usernm;
   var passwd = req.body.passwd;

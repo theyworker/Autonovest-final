@@ -17,24 +17,6 @@ var carid = $("#buyamount").attr("name");
 
   alert('Please confirm your purchase of'+amounttobuy+'Ether' );
 
-            // $.ajax({
-            //   url:"buythecar",
-            //   method: "POST",
-            //   data:{
-            //     car: carid,
-            //     amount : amounttobuy
-            //   },
-            //   dataType:"JSON",
-            //   success: function(data){
-            //     console.log('Posted');
-            //   },
-            //   error: function(xhr, ajaxOptions, thrownError){
-            //     alert(xhr.responseText);
-            //     alert(thrownError);
-            //     alert("Hold on to Ctrl + Shift + i to check error!");
-            //
-            //   }
-            // })
 
   }
 }

@@ -72,24 +72,13 @@ self.web3.eth.defaultAccount = self.web3.eth.accounts[0];
       callback("ERROR 404");
     });
 
-
-    //   return meta.getBalance.call(account, {from: account});
-    // }).then(function(value) {
-    //     callback(value.valueOf());
-    // }).catch(function(e) {
-    //     console.log(e);
-    //     callback("Error 404");
-    // });
   },
   getnumofcars: function() { // this is where im stuck 1
     var self = this;
-    //
     // Bootstrap the MetaCoin abstraction for Use.
-    // console.log(Carfunding);
     Carfunding.setProvider(self.web3.currentProvider);
-    //
+
     var meta;
-// console.log(carfunding_artifact);
 
     Carfunding.deployed().then(function(instance) {
       meta = instance;
