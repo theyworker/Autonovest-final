@@ -1,14 +1,6 @@
 const contract = require('truffle-contract');
 
 
-// const metacoin_artifact = require('../build/contracts/MetaCoin.json');
-// var MetaCoin = contract(metacoin_artifact);
-
-//
-// const carfunding_artifact = require('../build/contracts/carfunding.json');
-// var Carfunding = contract(carfunding_artifact);
-
-
 const crowdfunding_artifacts = require('../build/contracts/Crowdfunding.json');
 var Carfunding = contract(crowdfunding_artifacts);
 
@@ -28,6 +20,7 @@ var userBal;
 
 var PricePerKM = 20000000000000000;
 var PriceperMinute = 10000000000000000;
+
 module.exports = {
   start: function(callback) {
     var self = this;
@@ -62,14 +55,14 @@ self.web3.eth.defaultAccount = self.web3.eth.accounts[0];
     // // Bootstrap the MetaCoin abstraction for Use.
     Carfunding.setProvider(self.web3.currentProvider);
 
-    //
     var Carfunding_inst;
     Carfunding.deployed().then(function(instance) {
       Carfunding_inst = instance;
       return Carfunding_inst.buycar(cid,{value:am*1000000000000000000,gas: 3000000});
     }).catch(function(e) {
-      console.log(e);
-      callback("ERROR 404");
+
+      callback(true);
+
     });
 
   },
@@ -109,14 +102,14 @@ console.log(result);
       });
     }).catch(function(e) {
       console.log(e);
-      callback("ERROR 404");
+      callback("Car adding Failed!");
     });
   },
 
   carincome : function(car,dist, time){
       var self = this;
   var totalamount = (dist*PricePerKM)+(time*PriceperMinute);
-console.log('Total AMount'+totalamount);
+console.log('Total Amount'+totalamount);
   Carfunding.setProvider(self.web3.currentProvider);
   var Carfunding_inst;
 
