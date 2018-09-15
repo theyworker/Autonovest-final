@@ -1,13 +1,15 @@
 module.exports = function(express, app){
+
+  const fileUpload = require('express-fileupload');
   var router = express.Router();
   var bodyParser = require('body-parser')
   app.use(bodyParser.urlencoded({ extended: false }))
   app.use(bodyParser.json())
+  app.use(fileUpload());
   // var carDetails = require('../src/other/cars')
   var carDetails = require('../src/other/carsnew')
   const truffle_connect = require('../connection/app.js');
   const bgint = require('../connection/backgroundinteractions.js');
-  // const multer = require("multer");
 
 
   router.get('/', function(req,res,next){
@@ -175,6 +177,7 @@ module.exports = function(express, app){
   }
 
 })
+
 router.get('/car/:carID', function(req,res,next){
 
 
@@ -363,7 +366,6 @@ router.post('/newcar', function(req,res,next){
 
 
 
-
   truffle_connect.start(function(answer) {
     console.log(answer);
   });
@@ -373,11 +375,31 @@ router.post('/newcar', function(req,res,next){
 
   })
 
+var picturepath = "lexus.jpg" ;
 
-  console.log(carDetails);
+  if (!req.files){
+    console.log("no file");
+  }
+  else {
+
+    let sampleFile = req.files.pictureofcar;
+    let mimetype = sampleFile.mimetype;
+    var fileextension;
+    if (mimetype == "image/jpeg"){fileextension =  ".jpg"}
+    if (mimetype == "image/png"){fileextension = ".png"}
+    picturepath = 'imageof'+cid+fileextension;
+    
+    sampleFile.mv('./src/imageof'+cid+fileextension, function(err) {
+    if (err)
+      return console.log(err);
+    })
+  }
+
+
+
   carDetails.push({"id":cid,
   "name":cmodel,
-  "picture":"lexus.jpg",
+  "picture":picturepath,
   "yearofmanu":cyr,
   "Manufacturer":cmanuf,
   "EngineNumber":engnum,
