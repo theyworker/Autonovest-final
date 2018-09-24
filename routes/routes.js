@@ -375,20 +375,26 @@ router.post('/newcar', function(req,res,next){
 
   })
 
-var picturepath = "lexus.jpg" ;
+    var picturepath = "lexus.jpg" ;
+    var fileextension;
+    var mimetype="";
 
-  if (!req.files){
+
+  if (!req.files.pictureofcar){
     console.log("no file");
   }
   else {
 
     let sampleFile = req.files.pictureofcar;
-    let mimetype = sampleFile.mimetype;
-    var fileextension;
-    if (mimetype == "image/jpeg"){fileextension =  ".jpg"}
-    if (mimetype == "image/png"){fileextension = ".png"}
+
+      mimetype = sampleFile.mimetype;
+      if (mimetype == "image/jpeg"){fileextension =  ".jpg"}
+      if (mimetype == "image/png"){fileextension = ".png"}
+
+
+
     picturepath = 'imageof'+cid+fileextension;
-    
+
     sampleFile.mv('./src/imageof'+cid+fileextension, function(err) {
     if (err)
       return console.log(err);
