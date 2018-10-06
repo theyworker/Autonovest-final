@@ -99,6 +99,10 @@ contract Crowdfunding{
     return Cars[cid].price;
   }
 
+  function getTotalVol() public view returns(uint){
+    return TotalVolume;
+  }
+
   function getAmountRaised(uint cid) public view returns(uint){
     return Cars[cid].amountRaised;
   }

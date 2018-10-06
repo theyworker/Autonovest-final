@@ -28,6 +28,24 @@ module.exports = {
       }
     }, 5000);
 
-  }
+  },
 
+  countActInvst : function(){
+    return carDetails.length;
+  },
+
+  countFuncCars : function(){
+    var count = 0;
+    var x;
+    for(x=0;x<carDetails.length;x++)
+    {
+      if(carDetails[x].CarActive)
+      {
+        if(!carDetails[x].ForSale){
+          count++;
+        }
+      }
+    }
+    return count;
+  }
 }

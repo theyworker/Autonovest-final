@@ -30,7 +30,20 @@ module.exports = function(express, app){
   })
 
   router.get('/admin', function(req,res,next){
-    res.render('admindashboard',{title:'Dashboard | Autonovest'});
+    truffle_connect.start(function(answer) {
+      console.log(answer);
+    });
+
+    truffle_connect.TotalVolumeofAutonovest();
+
+    setTimeout(function () {
+      ActInvst = bgint.countActInvst();
+      FuncCars = bgint.countFuncCars();
+      TotVol = truffle_connect.returnTotalVolume();
+      res.render('admindashboard',{title:'Dashboard | Autonovest', actinvst:ActInvst, funccars : FuncCars, totalvol: TotVol});
+
+    }, 800);
+
   })
 
   router.get('/ridesharing', function(req,res,next){

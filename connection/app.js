@@ -21,6 +21,8 @@ var userBal;
 var PricePerKM = 20000000000000000;
 var PriceperMinute = 10000000000000000;
 
+var TotVol;
+
 module.exports = {
   start: function(callback) {
     var self = this;
@@ -205,10 +207,30 @@ claimIncome : function(){
 
 },
 
+TotalVolumeofAutonovest : function(){
+  var self = this;
+  Carfunding.setProvider(self.web3.currentProvider);
+
+    var Carfunding_inst;
+    Carfunding.deployed().then(function(instance){
+      Carfunding_inst = instance;
+      return Carfunding_inst.getTotalVol.call().then(function(tv){
+        TotalVolume = tv;
+      });
+    })
+
+},
+
 returnForSale : function (){
   var tempvar = carForSale;
   carForSale="";
   return tempvar;
+},
+
+returnTotalVolume : function (){
+  var tempvar = TotalVolume;
+  TotalVolume="";
+  return tempvar/1000000000000000000;
 },
 
 returnPriceinfo : function (){
